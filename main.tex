@@ -1,0 +1,103 @@
+\documentclass{utmconf}
+
+% The official conference paper template does not require a logo. The logo asset is
+% included for UTM-branded variants; uncomment the next line only if requested.
+% \UTMShowLogotrue
+
+\papertitle{Titlul lucrării științifice privind optimizarea unui proces academic}
+\paperauthors{Prenumele NUMELE autor unu$^{1}$, Prenumele NUMELE autor doi$^{2*}$}
+\paperaffiliations{$^{1}$Departamentul, grupa, Facultatea, Universitatea Tehnică a Moldovei, Chișinău, Republica Moldova\\
+$^{2}$Departamentul, grupa, Facultatea, Universitatea Tehnică a Moldovei, Chișinău, Republica Moldova}
+\correspondingauthor{*Autorul corespondent: Prenumele Numele, email@utm.md}
+\scientificsupervisor{\textbf{Îndrumătorul/coordonatorul științific Prenumele NUMELE}, titlul științific, afilierea}
+
+\begin{document}
+\makeutmtitle
+
+\begin{rezumat}
+Lucrarea prezintă o metodă de analiză și optimizare a unui proces academic, având ca scop reducerea timpului necesar pentru prelucrarea informațiilor și creșterea transparenței decizionale. Metodologia propusă combină analiza cerințelor, modelarea fluxului informațional și validarea rezultatelor prîntr-un studiu de caz realizat pe date sintetice, apropiate de situațiile întâlnite in mediul universitar. Rezultatele obținute indică o reducere a numărului de operații repetitive și o îmbunătățire a trasabilității etapelor critice. Elementul de noutate constă în integrarea criteriilor academice, administrative și tehnice într-un model unitar, ușor de reprodus și adaptat. Spre deosebire de abordările descriptive, modelul propus pune accent pe verificarea fiecărei etape, pe identificarea responsabilităților și pe corelarea indicatorilor cu rezultatele măsurabile. Aplicarea modelului poate susține redactarea unor rapoarte mai clare și poate reduce riscul de interpretare neuniformă a datelor. Concluziile confirmă că abordarea poate fi utilizată pentru proiectarea unor instrumente informatice mai clare, mai verificabile și mai conforme cu cerințele instituționale.
+\end{rezumat}
+
+\cuvintecheie{proces academic, optimizare, modelare, trasabilitate, validare}
+
+\section*{Introducere}
+
+Procesul analizat face parte din categoria activităților academice care necesită colectarea, verificarea și interpretarea unui volum semnificativ de informații. În literatura de specialitate sunt prezentate mai multe metode de automatizare, însă multe dintre acestea tratează separat aspectele tehnice și cele organizaționale [1]. În această lucrare se propune o abordare integrată, orientată spre claritate, reproductibilitate și control redacțional.
+
+Contribuțiile principale ale lucrării sunt:
+\begin{utmenumerate}
+\item elaborarea unui model logic pentru descrierea etapelor procesului academic;
+\item definirea unor criterii de evaluare a calității datelor prelucrate;
+\item validarea modelului prîntr-un exemplu numeric și prin interpretarea rezultatelor;
+\end{utmenumerate}
+
+\section*{Materiale și metode}
+
+Metodologia cercetării include identificarea actorilor implicați, descrierea fluxului informațional și stabilirea indicatorilor de performanță. Pentru fiecare etapă au fost definite date de intrare, date de ieșire și reguli de verificare. Datele zecimale sunt exprimate cu punct, conform cerințelor de redactare tehnică.
+
+Modelul general al timpului total de procesare este descris de relația:
+\begin{equation}
+T = \sum_{i=1}^{n} t_i ,
+\end{equation}
+unde $T$ reprezintă timpul total de procesare, iar $t_i$ reprezintă durata etapei $i$. Relația este menționată în text ca Ec. (1).
+
+\section*{Rezultate și discuții}
+
+Aplicarea metodei propuse permite compararea etapelor și identificarea zonelor în care apar întârzieri. Tab. 1 prezintă un exemplu de rezultate obținute pentru trei etape succesive ale procesului.
+
+\utmtablecaption{Exemplu de rezultate obținute pentru etapele analizate}
+\begin{center}
+\begin{tabularx}{\textwidth}{|>{\bfseries}Y|>{\centering\arraybackslash}p{3cm}|>{\centering\arraybackslash}p{3cm}|}
+\hline
+Etapa & Timp inițial, min & Timp optimizat, min \\
+\hline
+Colectare date & 42.50 & 31.25 \\
+\hline
+Validare & 36.00 & 24.75 \\
+\hline
+Raportare & 28.20 & 18.40 \\
+\hline
+\end{tabularx}
+\end{center}
+
+Fig. 1 ilustrează rolul modelului propus în transformarea datelor inițiale în rezultate verificabile.
+
+\begin{figure}[h]
+\centering
+\fbox{\parbox[c][3cm][c]{0.75\textwidth}{\centering Schema procesului analizat}}
+\utmfigurecaption{Reprezentarea simplificată a fluxului informațional}
+\end{figure}
+
+Rezultatele confirmă că reducerea timpului de procesare nu trebuie analizată izolat, ci împreună cu nivelul de trasabilitate și cu posibilitatea de verificare a fiecărei etape. Acest rezultat este în acord cu recomandările privind reproducibilitatea experimentelor și justificarea soluțiilor adoptate [2].
+
+\section*{Concluzii}
+
+Lucrarea demonstrează că modelarea explicită a etapelor unui proces academic poate contribui la reducerea operațiilor repetitive și la creșterea clarității decizionale. Contribuția personală constă în definirea modelului de analiza, stabilirea indicatorilor și interpretarea rezultatelor obținute. Direcțiile viitoare de cercetare includ extinderea modelului pentru procese cu mai mulți actori și validarea pe date instituționale reale.
+
+\section*{Mulțumiri}
+
+Autorii aduc mulțumiri coordonatorului științific pentru observațiile metodologice și pentru sprijinul oferit în etapa de validare.
+
+\section*{Referințe}
+
+\begin{enumerate}
+\item AUTOR 1, A.B.; AUTOR 2, C.D. Titlul lucrării. Numele revistei 2025, Volumul, pp. 154-196, doi: 10.0000/exemplu.
+\item AUTOR 1, A.; AUTOR 2, B. Titlul cărții, 3rd ed.; Editura: Locația editurii, Țara, 2024; pp. 154-196.
+\end{enumerate}
+
+\clearpage
+\section*{Declarație de originalitate și asumare a responsabilității}
+
+Subsemnatul(a), în calitate de autor corespondent, declar că lucrarea cu titlul ``Titlul lucrării științifice privind optimizarea unui proces academic'' este originală, reprezintă rezultatul activității autorilor și că toate sursele bibliografice utilizate sunt citate corespunzător. Îmi asum responsabilitatea pentru integritatea lucrării si corectitudinea informațiilor prezentate în această lucrare în numele tuturor coautorilor.
+
+\vspace{1cm}
+\noindent Numele și prenumele: \rule{7cm}{0.4pt}
+
+\vspace{0.5cm}
+\noindent Semnătura: \rule{7cm}{0.4pt}
+
+\vspace{0.5cm}
+\noindent Data: \rule{7cm}{0.4pt}
+
+\end{document}
+

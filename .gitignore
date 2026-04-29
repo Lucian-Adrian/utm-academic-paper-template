@@ -1,0 +1,11 @@
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.synctex.gz
+build/
+_fonttest*.tex
+_fonttest*.pdf
+_fonttest*.log

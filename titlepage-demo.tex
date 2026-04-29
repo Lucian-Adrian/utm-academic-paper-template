@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2.5cm,right=2cm]{geometry}
+\usepackage{iftex}
+\usepackage{graphicx}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{mathptmx}
+\else
+  \usepackage{fontspec}
+  \IfFontExistsTF{Times New Roman}
+    {\setmainfont{Times New Roman}}
+    {\setmainfont{Liberation Serif}}
+\fi
+\pagestyle{empty}
+
+\begin{document}
+\begin{center}
+{\bfseries\fontsize{12pt}{14pt}\selectfont
+Ministerul Educației și Cercetării al Republicii Moldova\\
+Universitatea Tehnică a Moldovei\\
+Facultatea de Calculatoare, Informatică și Microelectronică\\
+Departamentul Informatică și Ingineria Sistemelor}
+
+\vspace{1.2cm}
+\includegraphics[height=2cm]{assets/UTM_Logo.png}
+
+\vspace{1.5cm}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\raggedright
+{\bfseries\fontsize{11pt}{13pt}\selectfont
+Admis la susținere\\
+Șef departament: \rule{4cm}{0.4pt}\\
+``\rule{0.8cm}{0.4pt}''\rule{2.5cm}{0.4pt} 2026}
+\end{minipage}
+
+\vspace{2cm}
+{\bfseries\fontsize{20pt}{24pt}\selectfont
+Titlul proiectului sau tezei de licență}
+
+\vspace{0.8cm}
+{\bfseries\fontsize{16pt}{19pt}\selectfont Proiect / teză de licență}
+
+\vspace{2cm}
+\hfill
+\begin{minipage}{0.55\textwidth}
+{\bfseries\fontsize{12pt}{14pt}\selectfont
+Student: \rule{2.5cm}{0.4pt} (Prenumele Numele)\\[4pt]
+Conducător: \rule{2.5cm}{0.4pt} (titlu, Prenumele Numele)\\[4pt]
+Consultant: \rule{2.5cm}{0.4pt} (titlu, Prenumele Numele)\\[4pt]
+Recenzent: \rule{2.5cm}{0.4pt} (titlu, Prenumele Numele)}
+\end{minipage}
+
+\vfill
+{\bfseries\fontsize{12pt}{14pt}\selectfont Chișinău - 2026}
+\end{center}
+\end{document}
+
