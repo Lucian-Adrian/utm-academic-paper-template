@@ -1,6 +1,6 @@
 # UTM Academic LaTeX Templates
 
-Modern, compile-ready LaTeX templates for students at the Technical University of Moldova (UTM): conference article, conference abstract, and a shared report/thesis template.
+Modern, compile-ready LaTeX templates for students at the Technical University of Moldova (UTM): conference article, conference abstract, report, and license thesis/project.
 
 The repository was rebuilt from the 2026 UTM conference abstract/paper templates, the thesis/report guidance PDF, and older LaTeX folders. The old templates are preserved under `legacy/` for comparison, but new work should start from the modern folders below.
 
@@ -27,12 +27,12 @@ tectonic abstract.tex
 ```
 
 ```powershell
-cd report-thesis\report-example
+cd report
 tectonic main.tex
 ```
 
 ```powershell
-cd report-thesis\thesis-example
+cd thesis
 tectonic main.tex
 ```
 
@@ -44,8 +44,8 @@ The generated PDF appears in the same folder as the `.tex` file.
 |---|---|---|
 | UTM conference article / academic paper | `paper/article/` | `main.tex` |
 | Short UTM conference abstract | `paper/abstract/` | `abstract.tex` |
-| Course report, PBL report, laboratory/project report | `report-thesis/report-example/` | `main.tex` |
-| License thesis / graduation project | `report-thesis/thesis-example/` | `main.tex` |
+| Course report, PBL report, laboratory report, semester report | `report/` | `main.tex` |
+| License thesis / graduation project | `thesis/` | `main.tex` |
 | Rules in Romanian | `shared/rules/` | `UTM-writing-rules-and-formats-RO.md` |
 | Rules in English | `shared/rules/` | `UTM-writing-rules-and-formats-EN.md` |
 | Historical old templates | `legacy/` | reference only |
@@ -56,13 +56,11 @@ The generated PDF appears in the same folder as the `.tex` file.
 paper/
   article/          UTM conference article class and example
   abstract/         UTM conference abstract class and example
-report-thesis/
-  utmreport.cls     shared class for reports and theses
-  report-example/   universal report example
-  thesis-example/   license thesis/project example
-  shared/           logo assets used by report/thesis examples
+report/             universal UTM report example, without thesis-defense wording
+thesis/             license thesis/project example, with cover and defense title page
 shared/
   assets/           UTM logo variants
+  classes/          shared report/thesis LaTeX class
   rules/            bilingual extracted rules, source comparison, and title-page comparison
   tools/            validation scripts
 tools/              root-level validation scripts for easy use
@@ -109,18 +107,29 @@ The abstract template in `paper/abstract/` is for short conference submissions. 
 - keywords in `\cuvintecheie{...}`;
 - no oversized report/thesis title page.
 
-## Report And Thesis Rules
+## Report Rules
 
-The `report-thesis/utmreport.cls` class is shared by both reports and theses because the layout requirements are similar. It includes:
+The report template in `report/` uses the shared class but has its own title page macro: `\makeutmreporttitlepage`.
 
-- UTM cover page with logo;
-- formal title page;
-- abstract/adnotare environment;
+The report title page intentionally does not contain:
+
+- `Admis la susținere`;
+- `Proiect / teză de licență`;
+- thesis-defense signature blocks;
+- the old ambiguous label `Raport de proiect`.
+
+Use it for course reports, PBL reports, laboratory reports, semester reports, and academic project documentation where the teacher did not request thesis-style admission to defense.
+
+## Thesis Rules
+
+The thesis template in `thesis/` uses the same shared class but calls thesis-specific front matter:
+
+- `\makeutmcover` for the UTM cover;
+- `\makeutmthesistitlepage` for the formal defense title page;
+- declaration page;
+- abstract/adnotare;
 - table of contents;
-- chapter-based structure;
-- figure, table, equation, listing, and bibliography support;
-- 1.5 line spacing and 1.25 cm paragraph indentation;
-- optional consultant metadata.
+- chapter-based body, bibliography, and annexes.
 
 For a thesis/project, also keep the academic content ratios from the extracted guide in mind:
 
@@ -145,7 +154,7 @@ For article-only checks:
 python tools\check_utm_article.py
 ```
 
-The checker verifies the most important automated rules: article sections, abstract length, keyword count/case, margin tokens, report/thesis macros, table of contents presence, and enumeration punctuation. It cannot verify scientific originality, supervisor approval, signatures, or department-specific council decisions.
+The checker verifies the most important automated rules: article sections, abstract length, keyword count/case, margin tokens, report/thesis macros, table of contents presence, report-vs-thesis title-page wording, and enumeration punctuation. It cannot verify scientific originality, supervisor approval, signatures, or department-specific council decisions.
 
 ## Editing Without Technical Experience
 
@@ -170,5 +179,3 @@ The skill tells an agent how to choose the correct UTM document type, apply the 
 ## Important Limit
 
 This repository gives students a clean, modern starting point and automates many redaction checks. It cannot guarantee acceptance by a UTM council. Acceptance still depends on scientific quality, originality, correct data, supervisor approval, signatures, deadlines, and any stricter department-specific requirements.
-
-

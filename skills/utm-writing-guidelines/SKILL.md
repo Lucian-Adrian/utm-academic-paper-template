@@ -11,10 +11,10 @@ Choose exactly one target before formatting:
 
 - conference abstract: use `paper/abstract/abstract.tex`;
 - conference article/paper: use `paper/article/main.tex`;
-- report: use `report-thesis/report-example/main.tex`;
-- license thesis/project: use `report-thesis/thesis-example/main.tex`.
+- report: use `report/main.tex`;
+- license thesis/project: use `thesis/main.tex`.
 
-Do not mix article limits with thesis/report structure. If a teacher, supervisor, department, or council gives a stricter rule, follow the stricter rule and mention the deviation.
+Do not mix report and thesis front matter. Reports must not contain `Admis la susținere`, `Proiect / teză de licență`, or thesis-defense signature blocks. If a teacher, supervisor, department, or council gives a stricter rule, follow the stricter rule and mention the deviation.
 
 ## Local References
 
@@ -29,6 +29,7 @@ Read these before final formatting:
 - Romanian rules: `shared/rules/UTM-writing-rules-and-formats-RO.md`;
 - English rules: `shared/rules/UTM-writing-rules-and-formats-EN.md`;
 - source comparison: `shared/rules/source-comparison.md`;
+- title-page comparison: `shared/rules/titlepage-comparison.md`;
 - validator: `tools/check_utm_templates.py`.
 
 ## Non-Negotiable Rules
@@ -78,21 +79,26 @@ Required order:
 
 Keep the abstract compact and do not add report/thesis title pages.
 
-## Report Or Thesis
+## Report
 
-Use `report-thesis/utmreport.cls`.
+Use `report/main.tex`, which loads `shared/classes/utmreport.cls` and calls `\makeutmreporttitlepage`.
 
-For reports, start from `report-thesis/report-example/main.tex`. For theses/projects, start from `report-thesis/thesis-example/main.tex`.
+Report front matter must be UTM-branded but not thesis-defense-oriented:
 
-The class provides:
+- do not use `Admis la susținere`;
+- do not use `Proiect / teză de licență`;
+- do not use `Raport de proiect`;
+- do not add thesis cover/admission/declaration pages unless the assignment requires them.
 
-- UTM cover page with logo;
-- formal title page;
-- abstract/adnotare environment;
-- table of contents;
-- chapter structure;
-- figures, tables, equations, listings, bibliography, and appendices;
-- 1.5 line spacing and 1.25 cm paragraph indentation.
+## Thesis Or License Project
+
+Use `thesis/main.tex`, which loads `shared/classes/utmreport.cls` and calls:
+
+- `\makeutmcover`;
+- `\makeutmthesistitlepage`;
+- declaration page;
+- abstract/adnotare;
+- table of contents.
 
 Thesis/project content reminders:
 
@@ -124,12 +130,12 @@ tectonic abstract.tex
 ```
 
 ```powershell
-cd report-thesis\report-example
+cd report
 tectonic main.tex
 ```
 
 ```powershell
-cd report-thesis\thesis-example
+cd thesis
 tectonic main.tex
 ```
 

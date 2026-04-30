@@ -56,17 +56,27 @@ def check_abstract(failures: list[str]) -> None:
 
 
 def check_report_thesis(failures: list[str]) -> None:
-    cls = read(ROOT / "report-thesis/utmreport.cls")
-    for token in ["\\makeutmcover", "\\makeutmtitlepage", "\\setstretch{1.5}", "\\setlength{\\parindent}{1.25cm}", "\\newenvironment{utmenumerate}"]:
+    cls = read(ROOT / "shared/classes/utmreport.cls")
+    for token in ["\\makeutmcover", "\\makeutmreporttitlepage", "\\makeutmthesistitlepage", "\\setstretch{1.5}", "\\setlength{\\parindent}{1.25cm}", "\\newenvironment{utmenumerate}"]:
         if token not in cls:
             fail(failures, f"report/thesis class missing {token}")
-    for rel, label in [("report-thesis/report-example/main.tex", "report"), ("report-thesis/thesis-example/main.tex", "thesis")]:
+    for rel, label, documentclass, titlepage in [
+        ("report/main.tex", "report", "\\documentclass{../shared/classes/utmreport}", "\\makeutmreporttitlepage"),
+        ("thesis/main.tex", "thesis", "\\documentclass{../shared/classes/utmreport}", "\\makeutmthesistitlepage"),
+    ]:
         tex = read(ROOT / rel)
-        if "\\documentclass{../utmreport}" not in tex:
+        if documentclass not in tex:
             fail(failures, f"{label} example must use shared utmreport class")
+        if titlepage not in tex:
+            fail(failures, f"{label} example must use its specific title-page macro")
         if "\\tableofcontents" not in tex:
             fail(failures, f"{label} example must include table of contents")
         check_enumerations(tex, failures)
+    report_tex = read(ROOT / "report/main.tex")
+    report_before_abstract = report_tex.split("\\begin{utmabstract}", 1)[0]
+    for forbidden in ["Admis la susținere", "Proiect / teză de licență", "Raport de proiect"]:
+        if forbidden in report_before_abstract:
+            fail(failures, f"report title page must not contain thesis/project wording: {forbidden}")
 
 
 def check_keywords(tex: str, pattern: str, label: str, failures: list[str]) -> None:

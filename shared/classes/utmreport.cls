@@ -137,7 +137,36 @@
   \end{titlepage}
 }
 
-\newcommand{\makeutmtitlepage}{%
+\newcommand{\makeutmreporttitlepage}{%
+  \begin{titlepage}
+  \centering
+  {\bfseries\fontsize{12pt}{14pt}\selectfont
+  Ministerul Educației și Cercetării al Republicii Moldova\\
+  \UTMInstitution\\
+  \UTMFaculty\\
+  \UTMDepartment\par}
+  \vspace{2.2cm}
+  \includegraphics[height=2cm]{\UTMLogoPath}\par
+  \vspace{2cm}
+  {\bfseries\fontsize{20pt}{24pt}\selectfont \UTMReportTitle\par}
+  \ifx\UTMReportSubtitle\empty\else
+    \vspace{0.6cm}{\bfseries\fontsize{14pt}{17pt}\selectfont \UTMReportSubtitle\par}
+  \fi
+  \vspace{0.8cm}
+  {\bfseries\fontsize{16pt}{19pt}\selectfont \UTMDocumentType\par}
+  \vspace{2.2cm}
+  \hfill\begin{minipage}{0.62\textwidth}
+  \raggedright\bfseries\fontsize{12pt}{14pt}\selectfont
+  Student: \UTMStudentName\\
+  Grupa: \UTMStudentGroup\\[4pt]
+  Conducător: \UTMSupervisorTitle, \UTMSupervisorName
+  \end{minipage}
+  \vfill
+  {\bfseries\fontsize{12pt}{14pt}\selectfont \UTMCity{} - \UTMYear\par}
+  \end{titlepage}
+}
+
+\newcommand{\makeutmthesistitlepage}{%
   \begin{titlepage}
   \centering
   {\bfseries\fontsize{12pt}{14pt}\selectfont
