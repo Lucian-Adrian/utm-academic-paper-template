@@ -1,0 +1,90 @@
+\documentclass{tum_report}
+\usepackage{float}
+\usepackage{python_syntax_highlight}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{subfigure}
+% SQL Syntax
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\definecolor{codewhite}{rgb}{0.85,0.85,0.85}
+
+\lstdefinestyle{sql_style}{language=SQL,
+  basicstyle={\small\ttfamily},
+  backgroundcolor=\color{codewhite},
+  belowskip=3mm,
+  breakatwhitespace=true,
+  breaklines=true,
+  classoffset=0,
+  columns=flexible,
+  commentstyle=\color{dkgreen},
+  framexleftmargin=0.25em,
+  frameshape={}{yy}{}{}, %To remove to vertical lines on left, set `frameshape={}{}{}{}`
+  keywordstyle=\color{blue},
+  numbers=none, %If you want line numbers, set `numbers=left`
+  numberstyle=\tiny\color{gray},
+  showstringspaces=false,
+  stringstyle=\color{mauve},
+  tabsize=3,
+  xleftmargin =1em
+}
+
+\usepackage{amsmath}
+\usepackage{chngcntr}
+
+\counterwithout{figure}{section}
+
+\counterwithout{equation}{section}
+
+\counterwithout{table}{section}
+
+\numberwithin{equation}{chapter}
+
+\numberwithin{figure}{chapter}
+
+\numberwithin{table}{chapter}
+
+\begin{document}
+
+    \input{tex_files/title_page}
+    \clearpage
+
+    \input{tex_files/abstract} 
+    \clearpage
+
+    \addtocontents{toc}{\protect \thispagestyle{empty}}
+    \tableofcontents
+    \thispagestyle{empty}
+    \clearpage
+
+    \input{tex_files/introduction}
+    \clearpage
+
+    \input{tex_files/domain_analysis}
+    \clearpage
+
+    \input{tex_files/language_overview}
+    \clearpage
+
+    \input{tex_files/implementation_plan}
+    \clearpage
+
+    \input{tex_files/teamwork_plan}
+    \clearpage
+
+    \input{tex_files/language_implementation}
+    \clearpage
+
+    \input{tex_files/conclusion}
+    \clearpage
+    
+    \phantomsection
+    \addcontentsline{toc}{chapter}{Bibliography}
+    \input{tex_files/bibliography}
+
+\end{document}

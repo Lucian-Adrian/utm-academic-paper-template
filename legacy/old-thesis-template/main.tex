@@ -1,0 +1,102 @@
+\documentclass{thesis}
+
+\begin{document}
+
+    % EN: Cover / RO: Copertă
+    % EN: Title Page / RO: Pagină de titlu
+    % EN: Acknowledgements / RO: Pagina de dedicații și mulțumiri
+    % EN: Declaration of authenticity / RO: Declarația de autenticitate
+    % EN: Supervisors review / RO: Avizul conducătorului
+
+    \include{custom_pages/0_cover}
+    \include{custom_pages/1_title_page_en}
+    \include{custom_pages/acknowledgements}
+    \includepdf{custom_pages/pdf/personal_declaration.pdf}
+    \includepdf{custom_pages/pdf/supervisor_opinion.pdf}
+    
+
+
+    % EN: Abstract / RO: Adnotare
+
+    %\include{custom_pages/adnotare} % Uncomment if the Romanian version is needed.
+    \include{custom_pages/abstract}
+    \clearpage
+
+
+
+    % EN: Content RO: Conținut
+    
+    \addtocontents{toc}{\protect\thispagestyle{empty}}
+    \tableofcontents
+    \thispagestyle{empty}
+    \clearpage
+
+    % EN: List of figures / RO: Lista de figuri
+    
+    \addcontentsline{toc}{chapter}{\listfigurename}
+    \listoffigures 
+    \thispagestyle{empty}
+    \clearpage
+    
+    % EN: List of tables / RO: Lista de tabele
+
+    \addcontentsline{toc}{chapter}{\listtablename}
+    \listoftables  
+    \thispagestyle{empty}
+    \clearpage
+    
+    % EN: Glossary / RO: Glosar
+    
+    \addcontentsline{toc}{chapter}{\glossaryname}
+    \printnoidxglossary[type=\acronymtype, nogroupskip, nonumberlist, style=myAcr]
+    \thispagestyle{empty}
+    \clearpage
+
+
+
+    % EN: Chapters / RO: Capitole
+        
+    \include{chapters/introduction}
+    \include{chapters/chapter_1}
+    \include{chapters/chapter_2}
+    \include{chapters/chapter_3}
+    \clearpage
+    
+    
+    
+    % EN: Conclusions / RO: Concluzii
+    
+    \include{chapters/conclusion}
+    \clearpage
+
+
+
+    % EN: Bibliography / RO: Bibliografie
+				
+    % \printbibliography[title=Bibliografie]
+    % \addcontentsline{toc}{chapter}{Bibliografie}
+    \include{custom_pages/references}
+    
+    
+    
+    % EN: Annexes / RO: Anexe
+    
+    \include{custom_pages/appendix0}
+    \clearpage
+    
+    \include{custom_pages/appendix1}
+    \clearpage
+
+
+
+    % Limitations:
+        
+     % Pages: 60-80
+     % Volume of theory <= 50%
+     % Image Volume <= 30%
+     % Font: Times New Roman 12pt
+     % A4 format (210 x 297 mm)
+     % 3 Chapters
+     % 4-5 Sub-chapters per chapter
+
+\end{document}

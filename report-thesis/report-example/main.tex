@@ -1,0 +1,78 @@
+\documentclass{../utmreport}
+
+\utmlogo{../shared/UTM_Logo.png}
+\institution{Universitatea Tehnică a Moldovei}
+\faculty{Facultatea Calculatoare, Informatică și Microelectronică}
+\department{Departamentul Informatică și Ingineria Sistemelor}
+\documenttype{Raport de proiect}
+\reporttitle{Raport privind analiza și proiectarea unui sistem informatic}
+\reportsubtitle{Model universal pentru rapoarte UTM}
+\student{Prenumele NUMELE}{FAF-231}
+\supervisor{Prenumele NUMELE}{conf. univ., dr.}
+\cityyear{Chișinău}{2026}
+
+\begin{document}
+\makeutmtitlepage
+
+\begin{utmabstract}
+Acest raport prezintă structura recomandată pentru documentarea unui proiect academic la Universitatea Tehnică a Moldovei. Modelul include pagină de titlu, rezumat, cuprins, capitole numerotate, figuri, tabele, ecuații, concluzii și bibliografie. Scopul său este să ofere studenților o bază clară, ușor de modificat și conformă cu cerințele generale de redactare.
+
+\utmkeywords{raport, proiect, latex, utm, redactare}
+\end{utmabstract}
+
+\tableofcontents
+\clearpage
+
+\chapter{Introducere}
+
+Raportul de proiect trebuie să explice tema, contextul, obiectivele, metodologia și rezultatele obținute. Textul se redactează impersonal, cu fraze clare și cu citarea tuturor surselor folosite.
+
+Obiectivele raportului sunt:
+\begin{utmenumerate}
+\item prezentarea problemei analizate;
+\item descrierea metodei de lucru;
+\item interpretarea rezultatelor obținute;
+\end{utmenumerate}
+
+\chapter{Metodologia lucrării}
+
+Metodologia include identificarea cerințelor, proiectarea soluției și verificarea rezultatelor. Ecuația (2.1) arată o formulă simplă pentru calculul unui indicator total:
+\begin{equation}
+S = \sum_{i=1}^{n} x_i .
+\end{equation}
+
+\chapter{Rezultate}
+
+Tabelul \ref{tab:rezultate} prezintă un exemplu de rezultate sintetice.
+
+\begin{table}[h]
+\caption{Rezultate sintetice ale proiectului}
+\label{tab:rezultate}
+\centering
+\begin{tabularx}{0.9\textwidth}{|Y|c|c|}
+\hline
+\textbf{Indicator} & \textbf{Valoare inițială} & \textbf{Valoare finală} \\
+\hline
+Timp de procesare, min & 42.50 & 31.25 \\
+\hline
+Număr de erori & 7 & 2 \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{figure}[h]
+\centering
+\fbox{\parbox[c][3cm][c]{0.7\textwidth}{\centering Diagramă demonstrativă}}
+\caption{Exemplu de figură într-un raport UTM}
+\label{fig:demo}
+\end{figure}
+
+\chapter{Concluzii}
+
+Modelul propus poate fi folosit pentru rapoarte de laborator, proiecte PBL și rapoarte semestriale. Studenții trebuie să adapteze capitolele la cerințele profesorului și să păstreze regulile de citare, numerotare și formatare.
+
+\begin{thebibliography}{9}
+\bibitem{utm-guide} Universitatea Tehnică a Moldovei. Ghid privind elaborarea și susținerea tezelor/proiectelor de licență. Chișinău, 2010.
+\end{thebibliography}
+
+\end{document}
