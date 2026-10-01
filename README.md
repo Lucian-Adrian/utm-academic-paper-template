@@ -1,6 +1,6 @@
 # UTM Academic LaTeX Templates
 
-Modern, compile-ready LaTeX templates for students at the Technical University of Moldova (UTM): conference article, conference abstract, report, and license thesis/project.
+LaTeX templates for students at the Technical University of Moldova (UTM): conference article, conference abstract, report, and license thesis/project.
 
 The repository was rebuilt from the 2026 UTM conference abstract/paper templates, the thesis/report guidance PDF, and older LaTeX folders. The old templates are preserved under `legacy/` for comparison, but new work should start from the modern folders below.
 
@@ -45,6 +45,7 @@ The generated PDF appears in the same folder as the `.tex` file.
 | UTM conference article / academic paper | `paper/article/` | `main.tex` |
 | Short UTM conference abstract | `paper/abstract/` | `abstract.tex` |
 | Course report, PBL report, laboratory report, semester report | `report/` | `main.tex` |
+| Team internship report using the supplied ELSE model | `report/` | `internship.tex` |
 | License thesis / graduation project | `thesis/` | `main.tex` |
 | Rules in Romanian | `shared/rules/` | `UTM-writing-rules-and-formats-RO.md` |
 | Rules in English | `shared/rules/` | `UTM-writing-rules-and-formats-EN.md` |
@@ -56,7 +57,7 @@ The generated PDF appears in the same folder as the `.tex` file.
 paper/
   article/          UTM conference article class and example
   abstract/         UTM conference abstract class and example
-report/             universal UTM report example, without thesis-defense wording
+report/             individual and team internship report examples
 thesis/             license thesis/project example, with cover and defense title page
 shared/
   assets/           UTM logo variants
@@ -69,12 +70,13 @@ legacy/             old previous-year templates preserved for comparison
 
 ## Core Formatting Rules
 
-These are the non-negotiable defaults encoded in the templates:
+Choose the source profile for the document type:
 
 - A4 portrait page;
-- margins: top 2 cm, bottom 2 cm, right 2 cm, left 2.5 cm;
+- ELSE reports: top, bottom and left margins 2 cm, right margin 1 cm;
+- conference formats and the explicit thesis profile retain top/bottom/right 2 cm and left 2.5 cm;
 - Times New Roman when available, with a serif fallback for systems without it;
-- Romanian text with diacritics;
+- English or Romanian text, preserving Romanian diacritics where used;
 - impersonal academic style;
 - all reused ideas, figures, tables, formulas, schemes, scans, and adapted materials must be cited;
 - enumerations introduced by a colon, with each item starting lowercase and ending with a semicolon;
@@ -109,20 +111,23 @@ The abstract template in `paper/abstract/` is for short conference submissions. 
 
 ## Report Rules
 
-The report template in `report/` uses the shared class but has its own title page macro: `\makeutmreporttitlepage`.
+The default shared class now follows the supplied ELSE mandatory Word report model. See [the measured report rules](shared/rules/ELSE-report-template.md) for its provenance and details.
 
-The report title page intentionally does not contain:
+- `report/main.tex`: individual coursework, with right-aligned student, group and coordinator;
+- `report/internship.tex`: the mandatory team cover, mentor, blank signature fields and final member summaries;
+- Times New Roman 12 pt, justified, 1.5 spacing, 1.25 cm first-line indent;
+- uppercase centered 13 pt chapter headings; unnumbered Introduction and Conclusions;
+- Courier New 10 pt code; longer programs in referenced appendices;
+- bold centered figure captions below; bold right-aligned table captions above;
+- cover, contents and abstract count as pages but show no numbers; numbering appears at Introduction without restarting.
 
-- `Admis la susținere`;
-- `Proiect / teză de licență`;
-- thesis-defense signature blocks;
-- the old ambiguous label `Raport de proiect`.
+Use `\makeutmreporttitlepage` or `\makeutminternshiptitlepage`, then contents and abstract, `\utmintroduction`, numbered chapters and `\utmconclusions`. Select English with `\selectlanguage{english}`. For the internship example, run `tectonic internship.tex` from `report/`.
 
-Use it for course reports, PBL reports, laboratory reports, semester reports, and academic project documentation where the teacher did not request thesis-style admission to defense.
+Coursework reports do not need internship team, mentor, signature or summary fields. The supplied report model does not add a ministry line or thesis admission block. Replace all example content before submission; illustrative values are not measurements.
 
 ## Thesis Rules
 
-The thesis template in `thesis/` uses the same shared class but calls thesis-specific front matter:
+The thesis template in `thesis/` uses `\documentclass[thesis]{../shared/classes/utmreport}` to retain the thesis profile and calls thesis-specific front matter:
 
 - `\makeutmcover` for the UTM cover;
 - `\makeutmthesistitlepage` for the formal defense title page;
@@ -168,13 +173,7 @@ The checker verifies the most important automated rules: article sections, abstr
 
 ## Agent Skill
 
-A Codex/agent skill is included in `skills/utm-writing-guidelines/SKILL.md`. Install it by copying that folder into your local skills directory, or use the installed version if it already exists at:
-
-```text
-C:\Users\dev\.agents\skills\utm-writing-guidelines\SKILL.md
-```
-
-The skill tells an agent how to choose the correct UTM document type, apply the rules, use the templates, and verify the result before claiming it is ready.
+The repository includes [an agent skill](skills/utm-writing-guidelines/SKILL.md) for choosing a document type, applying its source rules and checking the compiled PDF. Installing it is optional.
 
 ## Important Limit
 

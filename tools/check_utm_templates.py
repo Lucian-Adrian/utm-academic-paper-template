@@ -62,7 +62,7 @@ def check_report_thesis(failures: list[str]) -> None:
             fail(failures, f"report/thesis class missing {token}")
     for rel, label, documentclass, titlepage in [
         ("report/main.tex", "report", "\\documentclass{../shared/classes/utmreport}", "\\makeutmreporttitlepage"),
-        ("thesis/main.tex", "thesis", "\\documentclass{../shared/classes/utmreport}", "\\makeutmthesistitlepage"),
+        ("thesis/main.tex", "thesis", "\\documentclass[thesis]{../shared/classes/utmreport}", "\\makeutmthesistitlepage"),
     ]:
         tex = read(ROOT / rel)
         if documentclass not in tex:
@@ -72,6 +72,24 @@ def check_report_thesis(failures: list[str]) -> None:
         if "\\tableofcontents" not in tex:
             fail(failures, f"{label} example must include table of contents")
         check_enumerations(tex, failures)
+    for token in ["left=2cm,right=1cm", r"\makeutminternshiptitlepage", r"\utmintroduction", r"\utmconclusions", r"\UTMFrontMattertrue", r"\raggedleft", "Courier New", "fontsize{13pt}"]:
+        if token not in cls:
+            fail(failures, f"ELSE report class missing {token}")
+    for rel in ["report/main.tex", "report/internship.tex"]:
+        tex = read(ROOT / rel)
+        for token in [r"\utmintroduction", r"\utmconclusions", r"\selectlanguage{english}", "UTM_Logo_English.jpeg"]:
+            if token not in tex:
+                fail(failures, f"{rel} missing {token}")
+        if not (tex.index(r"\tableofcontents") < tex.index(r"\begin{utmabstract}") < tex.index(r"\utmintroduction")):
+            fail(failures, f"{rel} needs contents, abstract, introduction in source order")
+        if r"\pagenumbering{roman}" in tex or r"\setcounter{page}{1}" in tex:
+            fail(failures, f"{rel} must preserve continuous page counting")
+        check_keywords(tex, r"\\utmkeywords\{([^}]*)\}", rel, failures, minimum=5, maximum=7)
+    if r"\makeutminternshiptitlepage" not in read(ROOT / "report/internship.tex"):
+        fail(failures, "internship example must use its mandatory team cover")
+    for rel in ["shared/rules/ELSE-report-template.md", "shared/assets/UTM_Logo_English.jpeg"]:
+        if not (ROOT / rel).is_file():
+            fail(failures, f"missing report source support: {rel}")
     report_tex = read(ROOT / "report/main.tex")
     report_before_abstract = report_tex.split("\\begin{utmabstract}", 1)[0]
     for forbidden in ["Admis la susținere", "Proiect / teză de licență", "Raport de proiect"]:
@@ -79,14 +97,14 @@ def check_report_thesis(failures: list[str]) -> None:
             fail(failures, f"report title page must not contain thesis/project wording: {forbidden}")
 
 
-def check_keywords(tex: str, pattern: str, label: str, failures: list[str]) -> None:
+def check_keywords(tex: str, pattern: str, label: str, failures: list[str], minimum: int = 4, maximum: int = 6) -> None:
     match = re.search(pattern, tex)
     if not match:
         fail(failures, f"{label} keywords missing")
         return
     keywords = [k.strip() for k in match.group(1).split(",") if k.strip()]
-    if not (4 <= len(keywords) <= 6):
-        fail(failures, f"{label} keywords must contain 4-6 terms; found {len(keywords)}")
+    if not (minimum <= len(keywords) <= maximum):
+        fail(failures, f"{label} keywords must contain {minimum}-{maximum} terms; found {len(keywords)}")
     bad = [k for k in keywords if k != k.lower()]
     if bad:
         fail(failures, f"{label} keywords must be lowercase: {', '.join(bad)}")

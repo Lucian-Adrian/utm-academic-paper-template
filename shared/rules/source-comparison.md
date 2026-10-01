@@ -1,5 +1,9 @@
 # Source Comparison and Decisions
 
+## Report update, 2 October 2026
+
+The supplied `MANDATORY_report_memplate (1).docx` now controls the default report profile. Its measured rules override previous generic report defaults; see [ELSE report rules](ELSE-report-template.md). The thesis profile is explicit via `[thesis]`, and conference classes are unchanged.
+
 ## Sources inspected
 
 - `Abstract_template-Conf-UTM-2026-rom.docx`

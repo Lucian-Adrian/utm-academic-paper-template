@@ -11,21 +11,19 @@ Choose exactly one target before formatting:
 
 - conference abstract: use `paper/abstract/abstract.tex`;
 - conference article/paper: use `paper/article/main.tex`;
-- report: use `report/main.tex`;
+- individual report: use `report/main.tex`;
+- mandatory team internship report: use `report/internship.tex`;
 - license thesis/project: use `thesis/main.tex`.
 
 Do not mix report and thesis front matter. Reports must not contain `Admis la susținere`, `Proiect / teză de licență`, or thesis-defense signature blocks. If a teacher, supervisor, department, or council gives a stricter rule, follow the stricter rule and mention the deviation.
 
 ## Local References
 
-Primary repository:
-
-```text
-D:\uni\year2\guidelines\paper\utm-academic-paper-template
-```
+Use this repository checkout as the primary template source.
 
 Read these before final formatting:
 
+- Measured ELSE report rules: `shared/rules/ELSE-report-template.md`;
 - Romanian rules: `shared/rules/UTM-writing-rules-and-formats-RO.md`;
 - English rules: `shared/rules/UTM-writing-rules-and-formats-EN.md`;
 - source comparison: `shared/rules/source-comparison.md`;
@@ -34,7 +32,7 @@ Read these before final formatting:
 
 ## Non-Negotiable Rules
 
-- Use A4 portrait with margins: top 2 cm, bottom 2 cm, right 2 cm, left 2.5 cm.
+- Use the document’s own source profile: ELSE reports have top/bottom/left 2 cm and right 1 cm; conference formats and the explicit thesis profile retain top/bottom/right 2 cm and left 2.5 cm.
 - Use Times New Roman or the template serif fallback.
 - Use Romanian diacritics in Romanian documents.
 - Use impersonal academic style; avoid first person.
@@ -81,18 +79,17 @@ Keep the abstract compact and do not add report/thesis title pages.
 
 ## Report
 
-Use `report/main.tex`, which loads `shared/classes/utmreport.cls` and calls `\makeutmreporttitlepage`.
+Use the default shared class and the measured ELSE report rules. `report/main.tex` is individual coursework; `report/internship.tex` preserves the mandatory team internship fields. Keep preliminary page numbers hidden but count them continuously. Use contents before abstract, `\utmintroduction`, numbered chapters and `\utmconclusions`. Do not reset body numbering.
 
-Report front matter must be UTM-branded but not thesis-defense-oriented:
+Match Times New Roman 12 pt, 1.5 spacing, 1.25 cm first-line indent, centered uppercase bold 13 pt chapters, and Courier New 10 pt single-spaced code. Program listings longer than half a page belong in a referenced appendix. Keep figures centered with bold captions below and tables with bold right-aligned captions above. Introduce visuals in prose and write opening prose before subchapters.
 
-- do not use `Admis la susținere`;
-- do not use `Proiect / teză de licență`;
-- do not use `Raport de proiect`;
-- do not add thesis cover/admission/declaration pages unless the assignment requires them.
+Right-align student/group/coordinator in individual reports and member name/group cells in internship covers. Use the supplied English logo for English reports. Keep titles and contents black. Cite every bibliography entry in first-use order, italicize titles, and include actual web access dates. Define abbreviations at first use. The source conditionally requires an abbreviations list before Introduction; preserve the accepted Filetracker omission as a project-specific exception. The source also gives minimum subchapter length and introduction guidance; distinguish a short layout example from a complete internship report.
+
+Do not impose internship mentor, signature or final-summary requirements on labs. For internships, leave signatures blank and append the completed official summary last with its own contents entry. The accepted Filetracker package uses one team-level page; separate member summaries require an explicit course instruction. Preserve verified work and distinguish measured results from examples. The accepted Filetracker introduction length is specific to that report.
 
 ## Thesis Or License Project
 
-Use `thesis/main.tex`, which loads `shared/classes/utmreport.cls` and calls:
+Use `thesis/main.tex`, which loads `shared/classes/utmreport.cls` with `[thesis]` and calls:
 
 - `\makeutmcover`;
 - `\makeutmthesistitlepage`;

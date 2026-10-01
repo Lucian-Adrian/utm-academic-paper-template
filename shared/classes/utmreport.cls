@@ -1,9 +1,18 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{utmreport}[2026/04/30 Universal UTM report and thesis class]
+\ProvidesClass{utmreport}[2026/10/02 ELSE report profile and UTM thesis class]
+
+\newif\ifUTMThesis
+\DeclareOption{thesis}{\UTMThesistrue}
+\ProcessOptions\relax
 
 \LoadClass[12pt,a4paper]{report}
 
-\RequirePackage[a4paper,top=2cm,bottom=2cm,left=2.5cm,right=2cm,headsep=1cm,footskip=1.25cm]{geometry}
+\ifUTMThesis
+  \RequirePackage[a4paper,top=2cm,bottom=2cm,left=2.5cm,right=2cm,headsep=1cm,footskip=1.25cm]{geometry}
+\else
+  % Measurements from the supplied ELSE mandatory report, not the conference template.
+  \RequirePackage[a4paper,top=2cm,bottom=2cm,left=2cm,right=1cm,headheight=0pt,headsep=0pt,footskip=7.3mm]{geometry}
+\fi
 \RequirePackage{iftex}
 \ifPDFTeX
   \RequirePackage[T1]{fontenc}
@@ -28,6 +37,8 @@
 \RequirePackage{ragged2e}
 \RequirePackage{listings}
 \RequirePackage{xcolor}
+\RequirePackage{hyperref}
+\hypersetup{hidelinks,hypertexnames=false}
 
 \selectlanguage{romanian}
 \setstretch{1.5}
@@ -35,6 +46,7 @@
 \setlength{\parskip}{0pt}
 \pagestyle{plain}
 
+\ifUTMThesis
 \titleformat{\chapter}[block]
   {\centering\bfseries\fontsize{14pt}{16pt}\selectfont}
   {\thechapter}
@@ -55,11 +67,26 @@
   {1em}
   {}
 \titlespacing*{\subsection}{0pt}{12pt}{0pt}
+\else
+  \titleformat{\chapter}[block]
+    {\centering\bfseries\fontsize{13pt}{16pt}\selectfont}
+    {\thechapter}{1em}{\MakeUppercase}
+  \titlespacing*{\chapter}{0pt}{0pt}{12pt}
+  \titleformat{\section}{\bfseries\fontsize{12pt}{14pt}\selectfont}{\thesection}{1em}{}
+  \titlespacing*{\section}{1.25cm}{12pt}{6pt}
+  \titleformat{\subsection}{\bfseries\fontsize{12pt}{14pt}\selectfont}{\thesubsection}{1em}{}
+  \titlespacing*{\subsection}{1.25cm}{12pt}{6pt}
+\fi
 
+\setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cfttoctitlefont}{\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
+\ifUTMThesis
+  \renewcommand{\cfttoctitlefont}{\hfill\bfseries\fontsize{14pt}{16pt}\selectfont}
+\else
+  \renewcommand{\cfttoctitlefont}{\hfill\bfseries\fontsize{13pt}{16pt}\selectfont\MakeUppercase}
+\fi
 \renewcommand{\cftaftertoctitle}{\hfill}
 \setlength{\cftbeforechapskip}{0pt}
 
@@ -75,6 +102,11 @@
 \DeclareCaptionLabelSeparator{dash}{ - }
 \captionsetup[figure]{labelsep=dash,justification=centering,singlelinecheck=true,font=normalfont}
 \captionsetup[table]{labelsep=dash,justification=raggedleft,singlelinecheck=false,labelfont=bf}
+\ifUTMThesis\else
+  \DeclareCaptionLabelSeparator{elsedash}{ \textendash\ }
+  \captionsetup[figure]{labelsep=elsedash,justification=centering,singlelinecheck=false,font={bf,normalsize}}
+  \captionsetup[table]{position=top,labelsep=elsedash,justification=raggedleft,singlelinecheck=false,font={bf,normalsize}}
+\fi
 
 \newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
 \renewcommand{\arraystretch}{1.2}
@@ -90,7 +122,57 @@
 }
 \lstset{style=utmcode}
 
-\newcommand{\UTMLogoPath}{../shared/UTM_Logo.png}
+\ifUTMThesis\else
+  \ifPDFTeX
+    \RequirePackage{courier}
+    \newcommand{\UTMCodeFont}{\fontfamily{pcr}\selectfont}
+  \else
+    \IfFontExistsTF{Courier New}{\newfontfamily\UTMCodeFont{Courier New}}{\newcommand{\UTMCodeFont}{\ttfamily}}
+  \fi
+  \lstdefinestyle{elsereportcode}{
+    basicstyle=\UTMCodeFont\fontsize{10pt}{12pt}\linespread{1}\selectfont,
+    breaklines=true,frame=none,numbers=none,backgroundcolor=\color{white},
+    keepspaces=true,columns=fullflexible,showstringspaces=false
+  }
+  \lstset{style=elsereportcode}
+\fi
+
+% Preliminary pages count, but their page numbers are not printed.
+\newif\ifUTMFrontMatter
+\ifUTMThesis\else\UTMFrontMattertrue\fi
+\makeatletter
+\ifUTMThesis\else
+  \def\ps@plain{\let\@mkboth\@gobbletwo
+    \let\@oddhead\@empty\let\@evenhead\@empty
+    \def\@oddfoot{\ifUTMFrontMatter\else\hfil\thepage\hfil\fi}
+    \let\@evenfoot\@oddfoot}
+\fi
+\makeatother
+\pagestyle{plain}
+\newcommand{\utmfrontmatter}{\UTMFrontMattertrue}
+\newcommand{\utmmainmatter}{\clearpage\UTMFrontMatterfalse\pagestyle{plain}}
+\newcommand{\utmintroduction}{\utmmainmatter\chapter*{\iflanguage{english}{Introduction}{Introducere}}\addcontentsline{toc}{chapter}{\iflanguage{english}{Introduction}{Introducere}}}
+\newcommand{\utmconclusions}{\chapter*{\iflanguage{english}{Conclusions}{Concluzii}}\addcontentsline{toc}{chapter}{\iflanguage{english}{Conclusions}{Concluzii}}}
+
+% The first appendix page includes the collection heading and its own letter/title.
+\ifUTMThesis\else
+  \newif\ifUTMFirstAppendix
+  \let\UTMOriginalAppendix\appendix
+  \renewcommand{\appendix}{%
+    \clearpage\phantomsection
+    \addcontentsline{toc}{chapter}{\iflanguage{english}{Appendices}{Anexe}}
+    \UTMOriginalAppendix\UTMFirstAppendixtrue
+    \titleformat{\chapter}[display]
+      {\centering\bfseries\fontsize{13pt}{16pt}\selectfont}
+      {\ifUTMFirstAppendix
+        \global\UTMFirstAppendixfalse
+        \iflanguage{english}{APPENDICES}{ANEXE}\\[12pt]
+       \fi
+       \iflanguage{english}{APPENDIX}{ANEXA}~\thechapter}
+      {6pt}{\MakeUppercase}}
+\fi
+
+\newcommand{\UTMLogoPath}{../shared/assets/UTM_Logo.png}
 \newcommand{\utmlogo}[1]{\renewcommand{\UTMLogoPath}{#1}}
 
 \newcommand{\institution}[1]{\gdef\UTMInstitution{#1}}
@@ -103,6 +185,18 @@
 \newcommand{\consultant}[2]{\gdef\UTMConsultantName{#1}\gdef\UTMConsultantTitle{#2}}
 \newcommand{\cityyear}[2]{\gdef\UTMCity{#1}\gdef\UTMYear{#2}}
 \newcommand{\documenttype}[1]{\gdef\UTMDocumentType{#1}}
+\newcommand{\studyprogramme}[1]{\gdef\UTMStudyProgramme{#1}}
+\newcommand{\team}[1]{\gdef\UTMTeam{#1}}
+\newcommand{\submissiondate}[1]{\gdef\UTMSubmissionDate{#1}}
+\newcommand{\internshipmentor}[1]{\gdef\UTMInternshipMentor{#1}}
+\makeatletter
+\newcommand{\teammember}[3]{\g@addto@macro\UTMTeamRows{\textbf{#1:} & #2, #3 & \rule{1.2cm}{0.3pt}\\\hline}}
+\makeatother
+\newcommand{\UTMTeamRows}{}
+\newcommand{\UTMStudentLabel}{\iflanguage{english}{Student}{Student}}
+\newcommand{\UTMGroupLabel}{\iflanguage{english}{Group}{Grupa}}
+\newcommand{\UTMCoordinatorLabel}{\iflanguage{english}{Coordinator}{Coordonator}}
+\newcommand{\UTMSupervisorDisplay}{\ifx\UTMSupervisorTitle\empty\else\UTMSupervisorTitle, \fi\UTMSupervisorName}
 
 \institution{Universitatea Tehnică a Moldovei}
 \faculty{Facultatea}
@@ -114,6 +208,22 @@
 \consultant{}{}
 \cityyear{Chișinău}{2026}
 \documenttype{Raport}
+\studyprogramme{}
+\team{Team number or name}
+\submissiondate{day / month / year}
+\internshipmentor{Mentor name from internship contract}
+
+\newcommand{\UTMReportInstitutionBlock}{%
+  \noindent\begin{minipage}[c]{0.20\textwidth}
+    \centering\includegraphics[width=0.88\linewidth]{\UTMLogoPath}
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.77\textwidth}
+    \centering\linespread{1}\selectfont
+    {\bfseries\fontsize{14pt}{17pt}\selectfont\MakeUppercase{\UTMInstitution}\par}
+    {\fontsize{13pt}{17pt}\selectfont\UTMFaculty\par\UTMDepartment\par
+    \ifx\UTMStudyProgramme\empty\else\UTMStudyProgramme\par\fi}
+  \end{minipage}\par
+}
 
 \newcommand{\makeutmcover}{%
   \begin{titlepage}
@@ -140,30 +250,47 @@
 \newcommand{\makeutmreporttitlepage}{%
   \begin{titlepage}
   \centering
-  {\bfseries\fontsize{12pt}{14pt}\selectfont
-  Ministerul Educației și Cercetării al Republicii Moldova\\
-  \UTMInstitution\\
-  \UTMFaculty\\
-  \UTMDepartment\par}
-  \vspace{2.2cm}
-  \includegraphics[height=2cm]{\UTMLogoPath}\par
-  \vspace{2cm}
-  {\bfseries\fontsize{20pt}{24pt}\selectfont \UTMReportTitle\par}
+  \UTMReportInstitutionBlock
+  \vspace{3cm}
+  {\bfseries\fontsize{20pt}{24pt}\selectfont\MakeUppercase{\UTMDocumentType}\par}
+  \vspace{0.6cm}
+  {\bfseries\fontsize{18pt}{22pt}\selectfont\UTMReportTitle\par}
   \ifx\UTMReportSubtitle\empty\else
     \vspace{0.6cm}{\bfseries\fontsize{14pt}{17pt}\selectfont \UTMReportSubtitle\par}
   \fi
-  \vspace{0.8cm}
-  {\bfseries\fontsize{16pt}{19pt}\selectfont \UTMDocumentType\par}
-  \vspace{2.2cm}
+  \vspace{2.5cm}
   \hfill\begin{minipage}{0.62\textwidth}
-  \raggedright\bfseries\fontsize{12pt}{14pt}\selectfont
-  Student: \UTMStudentName\\
-  Grupa: \UTMStudentGroup\\[4pt]
-  Conducător: \UTMSupervisorTitle, \UTMSupervisorName
+  \raggedleft\fontsize{12pt}{14pt}\selectfont
+  \textbf{\UTMStudentLabel:} \UTMStudentName\\
+  \textbf{\UTMGroupLabel:} \UTMStudentGroup\\[4pt]
+  \textbf{\UTMCoordinatorLabel:} \UTMSupervisorDisplay
   \end{minipage}
   \vfill
   {\bfseries\fontsize{12pt}{14pt}\selectfont \UTMCity{} - \UTMYear\par}
   \end{titlepage}
+  \setcounter{page}{2}\utmfrontmatter
+}
+
+\newcommand{\makeutminternshiptitlepage}{%
+  \begin{titlepage}\centering
+  \UTMReportInstitutionBlock
+  \vspace{3cm}
+  {\bfseries\fontsize{20pt}{24pt}\selectfont\MakeUppercase{\UTMDocumentType}\par}
+  \vspace{0.6cm}
+  {\bfseries\fontsize{18pt}{22pt}\selectfont\UTMReportTitle\par}
+  \vspace{1.6cm}\UTMTeam\par
+  \vspace{0.8cm}\noindent\textbf{Team members:}\par\vspace{0.3cm}
+  {\renewcommand{\arraystretch}{1.25}
+  \begin{tabularx}{\textwidth}{|p{0.30\textwidth}|>{\raggedleft\arraybackslash}X|p{0.18\textwidth}|}\hline
+  \UTMTeamRows
+  \textbf{University Internship Mentor} & \UTMInternshipMentor & \rule{1.2cm}{0.3pt}\\\hline
+  \end{tabularx}\par}
+  \vspace{0.5cm}
+  {\fontsize{10pt}{12pt}\selectfont\itshape\justifying
+  By signing the cover page of this report, each student confirms their active involvement in both the development of the project and the writing of the report. Students who did not contribute meaningfully are not permitted to sign.\par}
+  \vfill Submission date: \UTMSubmissionDate\par
+  \vspace{1cm}{\bfseries\UTMCity, \UTMYear\par}
+  \end{titlepage}\setcounter{page}{2}\utmfrontmatter
 }
 
 \newcommand{\makeutmthesistitlepage}{%
@@ -201,4 +328,4 @@
   {\chapter*{#1}\addcontentsline{toc}{chapter}{#1}}
   {\clearpage}
 
-\newcommand{\utmkeywords}[1]{\noindent\textbf{Cuvinte cheie:} #1\par}
+\newcommand{\utmkeywords}[1]{\noindent\textbf{\iflanguage{english}{Keywords}{Cuvinte cheie}:} #1\par}

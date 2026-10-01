@@ -1,6 +1,6 @@
 # UTM Title Page Comparison
 
-Source checked: `D:\uni\year2\guidelines\paper\sustinereTezeLicenta.pdf`, especially Anexa 1 and Anexa 2.
+Source checked: `sustinereTezeLicenta.pdf`, especially Anexa 1 and Anexa 2.
 
 ## Thesis Cover Page (Anexa 1)
 
@@ -33,32 +33,8 @@ Required source elements:
 
 Implemented in `shared/classes/utmreport.cls` through `\makeutmthesistitlepage`, used by `thesis/main.tex`.
 
-## Report Title Page
+## Report title page
 
-Reports are not theses and do not require the thesis defense/admission block unless a teacher explicitly asks for it. The report example therefore uses `\makeutmreporttitlepage`, not the thesis macro.
+The supplied ELSE report model controls report covers. Its logo sits beside the university, faculty, department and study programme. There is no ministry line or admission-to-defense block. Document type is 20 pt bold and title 18 pt bold.
 
-The report title page keeps the same institutional visual language:
-
-- ministry name;
-- UTM institution name;
-- faculty name;
-- department name;
-- UTM logo;
-- report title and optional subtitle;
-- document type `Raport`;
-- student, group, and supervisor;
-- Chișinău and year.
-
-The report title page intentionally excludes:
-
-- `Admis la susținere`;
-- department-head admission signature/date;
-- `Proiect / teză de licență`;
-- thesis declaration/front-matter pages.
-
-## Deliberate Modernizations
-
-- The old guide uses 2010-era ministry wording and Arial notes in the annex. The new template uses current UTM-friendly wording and Times New Roman to stay consistent with the extracted paper/report rules.
-- The old guide contains engineering-frame annex pages. The modern template keeps the academic cover/title structure while avoiding discipline-specific frames unless a department explicitly requires them.
-- Report and thesis now live in separate folders so students do not accidentally submit a report with thesis-defense wording.
-- The shared class remains centralized in `shared/classes/` so fixes apply consistently without duplicating the preamble.
+The individual report uses `\makeutmreporttitlepage` with right-aligned student, group and coordinator, as requested by the owner. The internship report uses `\makeutminternshiptitlepage` with a team table, mentor, blank signatures, attestation and submission date; member name/group cells are right aligned. See [ELSE report rules](ELSE-report-template.md) for source measurements and context.

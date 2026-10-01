@@ -1,5 +1,7 @@
 # UTM Writing Rules and Formats for Abstracts, Papers, and Thesis/Projects
 
+For reports, the supplied ELSE mandatory model takes precedence: top/bottom/left 2 cm, right 1 cm, centered uppercase 13 pt chapters, Courier New 10 pt code and hidden preliminary page numbers. See [ELSE report rules](ELSE-report-template.md). The conference and thesis rules below apply to their own document types.
+
 This document consolidates requirements from:
 
 - `Abstract_template-Conf-UTM-2026-rom.docx`;

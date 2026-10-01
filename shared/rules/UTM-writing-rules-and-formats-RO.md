@@ -1,5 +1,7 @@
 # Reguli și formate UTM pentru rezumat, articol și teză/proiect
 
+Pentru rapoarte se aplică modelul obligatoriu ELSE: margini sus/jos/stânga de 2 cm, dreapta de 1 cm, capitole centrate cu majuscule la 13 pt, cod Courier New 10 pt și numere ascunse pe paginile preliminare. Vezi [regulile pentru rapoarte ELSE](ELSE-report-template.md). Regulile de conferință și licență de mai jos se aplică documentelor respective.
+
 Document consolidat din:
 
 - `Abstract_template-Conf-UTM-2026-rom.docx`;

@@ -1,79 +1,77 @@
 \documentclass{../shared/classes/utmreport}
 
-\utmlogo{../shared/assets/UTM_Logo.png}
-\institution{Universitatea Tehnică a Moldovei}
-\faculty{Facultatea Calculatoare, Informatică și Microelectronică}
-\department{Departamentul Informatică și Ingineria Sistemelor}
-\documenttype{Raport}
-\reporttitle{Raport privind analiza și proiectarea unui sistem informatic}
-\reportsubtitle{Model universal pentru rapoarte UTM}
-\student{Prenumele NUMELE}{FAF-231}
-\supervisor{Prenumele NUMELE}{conf. univ., dr.}
+\selectlanguage{english}
+\utmlogo{../shared/assets/UTM_Logo_English.jpeg}
+\institution{Technical University of Moldova}
+\faculty{Faculty of Computers, Informatics, and Microelectronics}
+\department{Department of Software Engineering}
+\studyprogramme{Software Engineering Study Programme}
+\documenttype{Laboratory report}
+\reporttitle{Analysis and Design of an Information System}
+\reportsubtitle{Example of the ELSE report layout}
+\student{First name LAST NAME}{FAF-241}
+\supervisor{Coordinator name}{}
 \cityyear{Chișinău}{2026}
 
 \begin{document}
 \makeutmreporttitlepage
-
-\begin{utmabstract}
-Acest raport prezintă structura recomandată pentru documentarea unui proiect academic la Universitatea Tehnică a Moldovei. Modelul include pagină de titlu, rezumat, cuprins, capitole numerotate, figuri, tabele, ecuații, concluzii și bibliografie. Scopul său este să ofere studenților o bază clară, ușor de modificat și conformă cu cerințele generale de redactare.
-
-\utmkeywords{raport, proiect, latex, utm, redactare}
-\end{utmabstract}
-
 \tableofcontents
 \clearpage
 
-\chapter{Introducere}
+\begin{utmabstract}[Abstract]
+This example demonstrates the report layout derived from the mandatory ELSE Word template. It contains the institutional cover, contents, abstract, introduction, numbered chapters, captions, source code, conclusions and bibliography. Its numbers and diagram are illustrative; they do not represent an experiment or a completed project. Replace the example content with the work required by the course.
+\utmkeywords{requirements, methodology, implementation, evaluation, documentation, references}
+\end{utmabstract}
 
-Raportul de proiect trebuie să explice tema, contextul, obiectivele, metodologia și rezultatele obținute. Textul se redactează impersonal, cu fraze clare și cu citarea tuturor surselor folosite.
+\utmintroduction
+An academic report explains its subject, the problem, the method and the observed results. Its claims and reused material need citations. The document uses the supplied report layout rather than conference-paper or thesis-defense front matter.
 
-Obiectivele raportului sunt:
+The example's objectives are:
 \begin{utmenumerate}
-\item prezentarea problemei analizate;
-\item descrierea metodei de lucru;
-\item interpretarea rezultatelor obținute;
+\item explaining the problem and the method;
+\item presenting results separately from illustrative values;
+\item drawing conclusions supported by the observations;
 \end{utmenumerate}
 
-\chapter{Metodologia lucrării}
-
-Metodologia include identificarea cerințelor, proiectarea soluției și verificarea rezultatelor. Ecuația (2.1) arată o formulă simplă pentru calculul unui indicator total:
-\begin{equation}
-S = \sum_{i=1}^{n} x_i .
+\chapter{Methodology}
+The method connects the requirements, the implementation and the checks. Explain that connection before introducing the subchapters.
+\section{Model and notation}
+Equation \ref{eq:sum} defines the sum of $n$ values $x_i$; $S$ denotes their total:
+\begin{equation}\label{eq:sum}
+S=\sum_{i=1}^{n}x_i.
 \end{equation}
+\section{Implementation}
+Short code belongs beside its explanation. Longer code goes in an appendix referenced from the main text. The following loop calculates the same sum:
+\begin{lstlisting}
+int sum = 0;
+for (int index = 0; index < values.Length; index++)
+{
+    sum += values[index];
+}
+\end{lstlisting}
 
-\chapter{Rezultate}
-
-Tabelul \ref{tab:rezultate} prezintă un exemplu de rezultate sintetice.
-
-\begin{table}[h]
-\caption{Rezultate sintetice ale proiectului}
-\label{tab:rezultate}
+\chapter{Results}
+Introduce tables and figures in prose before displaying them. Table \ref{tab:example} uses illustrative values to demonstrate a numeric comparison; these are not measured results.
+\begin{table}[htbp]
+\caption{Illustrative values for a comparison}\label{tab:example}
 \centering
-\begin{tabularx}{0.9\textwidth}{|Y|c|c|}
-\hline
-\textbf{Indicator} & \textbf{Valoare inițială} & \textbf{Valoare finală} \\
-\hline
-Timp de procesare, min & 42.50 & 31.25 \\
-\hline
-Număr de erori & 7 & 2 \\
-\hline
+\begin{tabularx}{0.9\textwidth}{|Y|c|c|}\hline
+\textbf{Indicator} & \textbf{Initial value} & \textbf{Final value}\\\hline
+Processing time, min & 42.50 & 31.25\\\hline
+Errors, count & 7 & 2\\\hline
 \end{tabularx}
 \end{table}
 
-\begin{figure}[h]
-\centering
-\fbox{\parbox[c][3cm][c]{0.7\textwidth}{\centering Diagramă demonstrativă}}
-\caption{Exemplu de figură într-un raport UTM}
-\label{fig:demo}
+Figure \ref{fig:example} is a placeholder for an explained diagram. Cite a figure's source if it is reused or adapted.
+\begin{figure}[htbp]
+\centering\fbox{\parbox[c][2cm][c]{0.7\textwidth}{\centering Input $\longrightarrow$ processing $\longrightarrow$ result}}
+\caption{Example of a report diagram}\label{fig:example}
 \end{figure}
 
-\chapter{Concluzii}
-
-Modelul propus poate fi folosit pentru rapoarte de laborator, proiecte PBL și rapoarte semestriale. Studenții trebuie să adapteze capitolele la cerințele profesorului și să păstreze regulile de citare, numerotare și formatare.
+\utmconclusions
+Relate the results to the objectives, explain the limits, and identify the next steps. Keep the report's subject and demonstrated behavior clear. The template formatting is based on the supplied ELSE model \cite{else-model}; it does not establish that an assignment has been completed or accepted.
 
 \begin{thebibliography}{9}
-\bibitem{utm-guide} Universitatea Tehnică a Moldovei. Ghid privind elaborarea și susținerea tezelor/proiectelor de licență. Chișinău, 2010.
+\bibitem{else-model} Universitatea Tehnică a Moldovei. \textit{Mandatory report template}. ELSE Word model supplied on 2 October 2026. Its measured report rules are documented in \texttt{shared/rules/ELSE-report-template.md}.
 \end{thebibliography}
-
 \end{document}
-

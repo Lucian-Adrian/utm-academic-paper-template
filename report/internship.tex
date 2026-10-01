@@ -1,0 +1,101 @@
+\documentclass{../shared/classes/utmreport}
+
+\selectlanguage{english}
+\utmlogo{../shared/assets/UTM_Logo_English.jpeg}
+\institution{Technical University of Moldova}
+\faculty{Faculty of Computers, Informatics, and Microelectronics}
+\department{Department of Software Engineering}
+\studyprogramme{Software Engineering Study Programme}
+\documenttype{Internship report}
+\reporttitle{Project title}
+\team{Team No. 1}
+\teammember{Student 1}{First name LAST NAME}{FAF-241}
+\teammember{Student 2}{First name LAST NAME}{FAF-241}
+\teammember{Student 3}{First name LAST NAME}{FAF-243}
+\teammember{Student 4}{First name LAST NAME}{FAF-243}
+\internshipmentor{Mentor name from the internship contract}
+\submissiondate{day / month / year}
+\cityyear{Chișinău}{2026}
+
+\begin{document}
+\makeutminternshiptitlepage
+\tableofcontents
+\clearpage
+
+\begin{utmabstract}[Abstract]
+Summarize the problem, the implemented solution, the methods used, and the observed results. Keep completed work separate from planned development. This document is a reusable template; its fields and guidance must be replaced with the team's own report content.
+\utmkeywords{domain, requirements, architecture, security, implementation, testing}
+\end{utmabstract}
+
+\utmintroduction
+Explain the project context, the people who need the system, the problem, the internship objectives, and the scope of the work. Introduce the organization using a source that supports the description. Define abbreviations at first use. Cite adapted ideas, diagrams, tables and technical claims beside the claims they support.
+
+\chapter{Domain analysis}
+Explain the domain, existing approaches, user needs and requirements before describing the design.
+\section{Problem and user needs}
+Describe the people, their workflow and the concrete difficulty being addressed.
+\section{Existing approaches and requirements}
+Compare relevant approaches using cited evidence and identify the resulting requirements.
+
+\chapter{System design and security}
+Explain the design and its decisions before presenting the detailed architecture.
+\section{Architecture and technologies}
+Cite each reused source at its first relevant use \cite{source}. Introduce each diagram in prose, explain how the components interact, and justify the selected technologies. Put figure captions below figures and table captions above tables.
+\section{Security}
+Explain risks, access control, data handling, and tested protection mechanisms. Label proposals and untested controls as such.
+
+\chapter{Implementation and testing}
+Describe the functionality actually implemented and the evidence for its behavior.
+\section{Implementation}
+Explain the relevant source code. Code longer than half a page belongs in an appendix referenced here; use Courier New 10 pt with single spacing.
+\section{Testing and results}
+Describe inputs, expected behavior, observed results and limitations. Illustrative values must not be presented as measurements.
+
+\chapter{Team contributions and future work}
+Separate the contribution of each member from the team's shared result.
+\section{Contributions and lessons}
+State concrete responsibilities, delivered work and lessons. Do not invent attendance, biographies or individual contributions.
+\section{Future work}
+Describe remaining problems, intended improvements and the next implementation steps.
+
+\utmconclusions
+Relate the observed results to the objectives, state the main limitations, and distinguish implemented functionality from planned work.
+
+\begin{thebibliography}{9}
+\bibitem{source} Author or organization. \textit{Source title}. Publication date. For an online source, add its URL and actual access date. Each numbered entry must support a citation in the report; arrange references in first-use order.
+\end{thebibliography}
+
+\appendix
+\chapter{Supplementary source code}
+Include longer code listings and supporting material referenced in the main text.
+
+% The accepted Filetracker package used one completed team-level summary last.
+% Add separate member summaries only if the course requests them. Leave signatures blank.
+\chapter*{Internship Summary Report}
+\addcontentsline{toc}{chapter}{Internship Summary Report}
+\begin{center}
+\textbf{on the activities carried out during the internship}
+\end{center}
+\noindent Host organisation: \hrulefill\\
+Department (unit): \hrulefill\\
+Faculty of Computers, Informatics, and Microelectronics\\
+Study programme: Software Engineering\\
+Mode of study: full time\\
+Year of study: \rule{1cm}{0.3pt}\quad Group: \rule{2cm}{0.3pt}\\
+Internship period: from \rule{2cm}{0.3pt}\quad to \rule{2cm}{0.3pt}
+
+\noindent\textbf{Activities carried out and results obtained:}
+
+\noindent Activities carried out: \hrulefill\par\vspace{0.3cm}
+\noindent Results obtained: \hrulefill\par\vspace{0.3cm}
+\noindent\textbf{Difficulties encountered during the internship:}\par
+\noindent\hrulefill\par\vspace{0.3cm}
+\noindent\textbf{Conclusions and recommendations:}\par
+\noindent\hrulefill\par\vspace{0.3cm}
+\noindent\hrulefill\par\vspace{0.3cm}
+\noindent Date of completion: \rule{0.6cm}{0.3pt} / \rule{0.6cm}{0.3pt} / 20\rule{0.6cm}{0.3pt}\\
+Signature of the student: \rule{4cm}{0.3pt}
+% Replace blank activity/result/conclusion lines with the student's actual account.
+% Assess relevance, practical usefulness, lessons and the host's cooperation.
+% Omit difficulties only if they do not apply. Keep the signature blank until signed.
+\end{document}
