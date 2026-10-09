@@ -1,180 +1,149 @@
 # UTM Academic LaTeX Templates
 
-LaTeX templates for students at the Technical University of Moldova (UTM): conference article, conference abstract, report, and license thesis/project.
+LaTeX templates for students at the Technical University of Moldova (UTM): laboratory and course reports, the team internship report, the license thesis, and conference articles and abstracts.
 
-The repository was rebuilt from the 2026 UTM conference abstract/paper templates, the thesis/report guidance PDF, and older LaTeX folders. The old templates are preserved under `legacy/` for comparison, but new work should start from the modern folders below.
+The report templates follow the verified 2 October ELSE Word baseline (`MANDATORY_report_memplate.docx`) and the current FCIM formatting rules for covers, contents, headings, captions, references and appendices. The latest Word download was blocked and its current bytes remain unverified; see the source notes in `docs/rules/`.
 
-## Quick Start
+![UTM template audit summary, 9 October 2026](docs/template-audit-summary-2026-10-09.png)
 
-Install [Tectonic](https://tectonic-typesetting.github.io/) first. It is the easiest LaTeX compiler because it downloads missing packages automatically.
+## Start in three steps
 
-```powershell
-git clone https://github.com/Lucian-Adrian/utm-academic-paper-template.git
-cd utm-academic-paper-template
-python tools\check_utm_templates.py
-```
+1. **Pick a template** from `templates/`:
 
-Compile the document you need:
+   | You are writing | Template | Files you edit |
+   |---|---|---|
+   | Laboratory work, course, PBL or semester report (one author) | `templates/report/` | `main.tex` |
+   | Team internship report (mandatory ELSE model) | `templates/internship/` | `main.tex` (cover) and `chapters/*.tex` |
+   | License thesis / graduation project | `templates/thesis/` | `main.tex` |
+   | Conference article | `templates/article/` | `main.tex` |
+   | Conference abstract | `templates/abstract/` | `main.tex` |
 
-```powershell
-cd paper\article
-tectonic main.tex
-```
+2. **Copy the folder** to wherever the work belongs, either by hand or with:
 
-```powershell
-cd paper\abstract
-tectonic abstract.tex
-```
+   ```powershell
+   python tools\new.py report D:\edu\faf\sem3\oop\lab-1
+   ```
 
-```powershell
-cd report
-tectonic main.tex
-```
+   Every template folder is self-contained (class file, logo, example figure), so a copied folder compiles on its own. It doesn't need this repository.
 
-```powershell
-cd thesis
-tectonic main.tex
-```
+3. **Write and compile** inside the copied folder:
 
-The generated PDF appears in the same folder as the `.tex` file.
+   ```powershell
+   tectonic main.tex
+   ```
 
-## Which Template Should I Use?
+   `main.pdf` appears next to `main.tex`. Install [Tectonic](https://tectonic-typesetting.github.io/) once; it downloads missing LaTeX packages by itself.
 
-| Need | Start here | Main file |
-|---|---|---|
-| UTM conference article / academic paper | `paper/article/` | `main.tex` |
-| Short UTM conference abstract | `paper/abstract/` | `abstract.tex` |
-| Course report, PBL report, laboratory report, semester report | `report/` | `main.tex` |
-| Team internship report using the supplied ELSE model | `report/` | `internship.tex` |
-| License thesis / graduation project | `thesis/` | `main.tex` |
-| Rules in Romanian | `shared/rules/` | `UTM-writing-rules-and-formats-RO.md` |
-| Rules in English | `shared/rules/` | `UTM-writing-rules-and-formats-EN.md` |
-| Historical old templates | `legacy/` | reference only |
-
-## Repository Layout
+## How a template is organised
 
 ```text
-paper/
-  article/          UTM conference article class and example
-  abstract/         UTM conference abstract class and example
-report/             individual and team internship report examples
-thesis/             license thesis/project example, with cover and defense title page
-shared/
-  assets/           UTM logo variants
-  classes/          shared report/thesis LaTeX class
-  rules/            bilingual extracted rules, source comparison, and title-page comparison
-  tools/            validation scripts
-tools/              root-level validation scripts for easy use
-legacy/             old previous-year templates preserved for comparison
+templates/internship/
+  main.tex              cover fields and the order of the parts
+  chapters/             one file per part, numbered in the order they appear in the PDF
+    01-abstract.tex
+    02-abbreviations.tex    (optional; enable it in main.tex)
+    03-introduction.tex
+    04-chapter-1-domain-analysis.tex
+    ...
+    08-references.tex
+    09-appendix-a.tex
+    11-internship-summary.tex   (body repeated once per team member)
+  figures/              your images; include them by name: \includegraphics{diagram}
+  utmreport.cls         layout rules (margins, fonts, headings); do not edit
+  utm-logo.jpeg         cover logo
 ```
 
-## Core Formatting Rules
+`templates/report/` has the same pieces, but the whole text is in `main.tex`, because a lab report is short.
 
-Choose the source profile for the document type:
+**Red text is a placeholder.** Example text is wrapped in `\placeholder{...}` and printed in red, as in the Word model. Replace it all, then check your folder:
 
-- A4 portrait page;
-- ELSE reports: top, bottom and left margins 2 cm, right margin 1 cm;
-- conference formats and the explicit thesis profile retain top/bottom/right 2 cm and left 2.5 cm;
-- Times New Roman when available, with a serif fallback for systems without it;
-- English or Romanian text, preserving Romanian diacritics where used;
-- impersonal academic style;
-- all reused ideas, figures, tables, formulas, schemes, scans, and adapted materials must be cited;
-- enumerations introduced by a colon, with each item starting lowercase and ending with a semicolon;
-- stricter teacher, department, supervisor, or council instructions override the template.
-
-## Article Rules
-
-The article template in `paper/article/` follows the UTM conference paper structure:
-
-- title: uppercase, centered, 14 pt, bold;
-- authors: centered, 12 pt, bold;
-- affiliations: centered, 10 pt, italic;
-- abstract: 150-200 words, italic, justified, no citations;
-- keywords: 4-6 lowercase terms, comma-separated;
-- required sections: Introduction, Materials and Methods, Results and Discussion, Conclusions, References;
-- tables: title above the table;
-- figures: caption below the figure;
-- equations: centered and numbered;
-- references cited in square brackets before punctuation.
-
-The official article model does not require a UTM logo. A logo command is included but disabled by default. Enable it only if a teacher or department asks for branded pages.
-
-## Abstract Rules
-
-The abstract template in `paper/abstract/` is for short conference submissions. Keep it focused, compact, and formatted like the source abstract model:
-
-- title and author block first;
-- corresponding author and scientific supervisor included;
-- abstract body in `rezumat`;
-- keywords in `\cuvintecheie{...}`;
-- no oversized report/thesis title page.
-
-## Report Rules
-
-The default shared class now follows the supplied ELSE mandatory Word report model. See [the measured report rules](shared/rules/ELSE-report-template.md) for its provenance and details.
-
-- `report/main.tex`: individual coursework, with right-aligned student, group and coordinator;
-- `report/internship.tex`: the mandatory team cover, mentor, blank signature fields and final member summaries;
-- Times New Roman 12 pt, justified, 1.5 spacing, 1.25 cm first-line indent;
-- uppercase centered 13 pt chapter headings; unnumbered Introduction and Conclusions;
-- Courier New 10 pt code; longer programs in referenced appendices;
-- bold centered figure captions below; bold right-aligned table captions above;
-- cover, contents and abstract count as pages but show no numbers; numbering appears at Introduction without restarting.
-
-Use `\makeutmreporttitlepage` or `\makeutminternshiptitlepage`, then contents and abstract, `\utmintroduction`, numbered chapters and `\utmconclusions`. Select English with `\selectlanguage{english}`. For the internship example, run `tectonic internship.tex` from `report/`.
-
-Coursework reports do not need internship team, mentor, signature or summary fields. The supplied report model does not add a ministry line or thesis admission block. Replace all example content before submission; illustrative values are not measurements.
-
-## Thesis Rules
-
-The thesis template in `thesis/` uses `\documentclass[thesis]{../shared/classes/utmreport}` to retain the thesis profile and calls thesis-specific front matter:
-
-- `\makeutmcover` for the UTM cover;
-- `\makeutmthesistitlepage` for the formal defense title page;
-- declaration page;
-- abstract/adnotare;
-- table of contents;
-- chapter-based body, bibliography, and annexes.
-
-For a thesis/project, also keep the academic content ratios from the extracted guide in mind:
-
-- explanatory memorandum: usually 60-80 pages, excluding annexes;
-- theoretical part: about 30-40%, not more than 40%;
-- practical/applied part: about 60-70%;
-- figures and graphs: not more than 30% of total volume;
-- bibliography: normally 15-30 sources;
-- defense presentation: 10-15 minutes.
-
-## Validation
-
-Run the checker before compiling or submitting:
+For the current PP3702 internship report, add one `\internshipsummary{Full Name}` call for every team member after all appendices. Each call creates a separate final chapter and a title-case table-of-contents entry named `Internship Summary Report_Full Name`. Keep the call count and names aligned with the cover team list.
 
 ```powershell
-python tools\check_utm_templates.py
+python tools\check.py D:\edu\faf\sem3\oop\lab-1
 ```
 
-For article-only checks:
+The check reports leftover placeholders, the keyword count, citations that have no reference (and references that are never cited), missing images, and enumeration punctuation.
+
+## What the report class does for you
+
+Following the ELSE Word template:
+
+- A4, margins top/bottom/left 2 cm and right 1 cm; Times New Roman 12 pt, justified, 1.5 spacing, 1.25 cm first-line indent;
+- cover with logo, faculty, department and programme; document type 20 pt and title 18 pt, both bold uppercase;
+- internship cover with team, member table, mentor, `*Signature` cells, signing attestation, submission date;
+- **TABLE OF CONTENTS** with uppercase chapters and indented subchapters and appendices;
+- cover, contents and abstract are counted but not numbered; page numbers appear from the Introduction;
+- chapters `1 TITLE` on a new page, centered, bold uppercase 13 pt; subchapters `1.1 Title` bold 12 pt, indented 1.25 cm;
+- unnumbered INTRODUCTION, CONCLUSIONS and REFERENCES, all listed in the contents;
+- `Figure 1.1 – Title` bold and centered below; `Table 1.1 – Title` bold and right-aligned above; table text 11 pt single-spaced;
+- code in Courier New 10 pt, single-spaced;
+- references numbered `1.`, `2.`, ...;
+- APPENDICES, then `APPENDIX A – Title`, each on a new page.
+
+Commands you use in the text:
+
+| Command | Purpose |
+|---|---|
+| `\makeutmreporttitlepage`, `\makeutminternshiptitlepage` | cover |
+| `\internshipsummary{Full Name}` | append one named internship-summary chapter for a team member |
+| `\begin{utmabstract}[Abstract] ... \utmkeywords{...} \end{utmabstract}` | abstract with 5–7 lowercase keywords |
+| `\begin{utmabbreviations} \item[API] ... \end{utmabbreviations}` | list of abbreviations (before the Introduction) |
+| `\utmintroduction`, `\utmconclusions` | unnumbered Introduction / Conclusions |
+| `\chapter{...}`, `\section{...}`, `\subsection{...}` | numbered chapters, at most three levels |
+| `\begin{utmenumerate}` | a), b), c) enumeration; items end with `;` |
+| `\begin{thebibliography}{9} \bibitem{key} ...` and `\cite{key}` | references |
+| `\appendix` then `\chapter{Title}` | appendices |
+| `\unnumberedchapter{Title}` | any other unnumbered chapter listed in the contents |
+| `\placeholder{...}` | red text to replace |
+
+Use `\selectlanguage{romanian}` instead of `english` for a Romanian report; headings switch to Introducere, Concluzii, Cuprins, Bibliografie, Anexa and Figura/Tabelul.
+
+## Writing rules
+
+The Word template also sets content rules that the class cannot enforce:
+
+- impersonal style: no first-person pronouns;
+- every chapter opens with at least one paragraph before its first subchapter;
+- a subchapter is at least one full page; two subchapters do not start on the same page;
+- introduce every table and figure in a short paragraph before it; never start a page with one;
+- the introduction is typically 1–2 pages; the theoretical part does not exceed 40%;
+- abbreviations and terms outside the language of instruction go in the list of abbreviations;
+- code longer than half a page goes in an appendix referenced from the text;
+- every source is cited in the text and listed in References.
+- use generative AI on coursework only when the instructor clearly permits it; when permitted, disclose its use in the form the course specifies and preserve the student's own intellectual contribution.
+
+Full rules: [ELSE report rules](docs/rules/ELSE-report-template.md), [UTM rules (EN)](docs/rules/UTM-writing-rules-and-formats-EN.md), [UTM rules (RO)](docs/rules/UTM-writing-rules-and-formats-RO.md). Stricter instructions from a teacher, department or supervisor take precedence.
+
+## Thesis, article and abstract
+
+- `templates/thesis/` uses `\documentclass[thesis]{utmreport}`: cover and title page, task-sheet placeholder, handwritten-declaration placeholder, supervisor-opinion placeholder, Romanian and English abstract placeholders, contents, chapters, bibliography and annexes. For a thesis written in another language, provide title pages in that language and Romanian. The official UTM guide recommends 50–80 pages excluding annexes and lets the department set the exact limit; the theoretical part should stay at or below 40%, and figures/graphs at or below 30% of the volume.
+- UTM requires clear instructor permission before generative AI is used for coursework. If the course allows it, the student must disclose use explicitly and keep their own intellectual contribution. The university documents do not supply a universal disclosure sentence.
+- `templates/article/` follows the UTM conference paper: uppercase 14 pt title, authors, affiliations, 150–200 word abstract without citations, 4–6 keywords, Introduction / Materials and Methods / Results and Discussion / Conclusions / References. The logo is off by default.
+- `templates/abstract/` is the short conference abstract: title, authors, affiliations, corresponding author, supervisor, abstract and keywords.
+
+## Repository layout
+
+```text
+templates/   the five templates; copy one to start
+tools/       new.py (copy a template), check.py (validate), build.py (compile previews)
+docs/        rules extracted from the UTM sources, and PDF previews of every template
+shared/      maintainers only: the canonical utmreport.cls and logos
+skills/      optional agent skill for writing UTM documents
+legacy/      previous-year templates kept for comparison
+```
+
+## Maintaining the templates
+
+`shared/utmreport.cls` is the canonical class; each template folder holds a copy. After changing anything in `shared/`:
 
 ```powershell
-python tools\check_utm_article.py
+python tools\check.py --sync     # copy shared files into the templates, then validate
+python tools\build.py            # recompile every template into docs/previews/
 ```
 
-The checker verifies the most important automated rules: article sections, abstract length, keyword count/case, margin tokens, report/thesis macros, table of contents presence, report-vs-thesis title-page wording, and enumeration punctuation. It cannot verify scientific originality, supervisor approval, signatures, or department-specific council decisions.
+`python tools\check.py` without `--sync` fails when a template copy has drifted from `shared/`.
 
-## Editing Without Technical Experience
+## Limits
 
-1. Open the folder for the document type you need.
-2. Edit only the `.tex` example file first.
-3. Replace placeholder names, faculty, department, group, supervisor, title, abstract, keywords, and section text.
-4. Keep the commands that start with backslash, such as `\documentclass`, `\chapter`, `\section`, `\begin`, and `\end`.
-5. Run the checker.
-6. Compile with `tectonic`.
-7. Open the PDF and visually inspect title page, margins, Romanian diacritics, figures, tables, and references.
-
-## Agent Skill
-
-The repository includes [an agent skill](skills/utm-writing-guidelines/SKILL.md) for choosing a document type, applying its source rules and checking the compiled PDF. Installing it is optional.
-
-## Important Limit
-
-This repository gives students a clean, modern starting point and automates many redaction checks. It cannot guarantee acceptance by a UTM council. Acceptance still depends on scientific quality, originality, correct data, supervisor approval, signatures, deadlines, and any stricter department-specific requirements.
+The templates give a correct layout and catch common mistakes. Acceptance still depends on the content, originality, supervisor approval, signatures, deadlines and any stricter department rules.

@@ -1,0 +1,11 @@
+\documentclass[tikz,border=2pt]{standalone}
+\usetikzlibrary{arrows.meta,positioning}
+\begin{document}
+\begin{tikzpicture}[box/.style={draw=blue!60!black,fill=blue!55!cyan!60!white,minimum width=2.6cm,minimum height=1.3cm,font=\sffamily\small,text=white}]
+\node[box] (a) {Input};
+\node[box,right=1.2cm of a] (b) {Processing};
+\node[box,right=1.2cm of b] (c) {Result};
+\draw[-{Latex[length=3mm]},line width=1.2pt,blue!60!black] (a) -- (b);
+\draw[-{Latex[length=3mm]},line width=1.2pt,blue!60!black] (b) -- (c);
+\end{tikzpicture}
+\end{document}

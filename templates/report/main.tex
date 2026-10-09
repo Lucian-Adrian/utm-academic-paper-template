@@ -1,0 +1,109 @@
+% UTM individual report (laboratory work, course or semester report),
+% with the same layout as the mandatory ELSE Word template.
+%
+%   1. Fill in the cover fields below.
+%   2. Replace the red example text; everything is in this one file.
+%   3. Put images in figures/ and include them by name: \includegraphics{my-diagram}.
+%   4. Compile from this folder:  tectonic main.tex   (produces main.pdf)
+%
+% Red text in the PDF comes from \placeholder{...}: replace all of it before submitting.
+% Do not edit utmreport.cls; it holds the margins, fonts and heading styles.
+\documentclass{utmreport}
+\selectlanguage{english}
+
+% ---- Cover -----------------------------------------------------------------
+\institution{Technical University of Moldova}
+\faculty{Faculty of Computers, Informatics, and Microelectronics}
+\department{Department of Software Engineering}
+\studyprogramme{Software Engineering Study Programme}
+\documenttype{Laboratory work No. 1}
+\reporttitle{\placeholder{Title of the laboratory work}}
+\student{\placeholder{Name SURNAME}}{\placeholder{FAF-24x}}
+\supervisor{\placeholder{Name SURNAME}}{\placeholder{univ. assist.}} % {name}{title}; title may be empty
+\cityyear{Chișinău}{2026}
+
+\begin{document}
+\makeutmreporttitlepage
+\tableofcontents
+
+% ---- Abstract: one page, 5-7 lowercase keywords ----------------------------
+\begin{utmabstract}[Abstract]
+\placeholder{Summarize the task, the method, the result and the main conclusion in one paragraph.}
+
+\utmkeywords{\placeholder{requirements, methodology, implementation, evaluation, documentation}}
+\end{utmabstract}
+
+% Optional: required when the report uses abbreviations or English terms.
+% \begin{utmabbreviations}
+% \item[API] Application Programming Interface
+% \end{utmabbreviations}
+
+% ---- Introduction: purpose of the work and the task conditions -------------
+\utmintroduction
+\placeholder{State the purpose of the laboratory work and the task conditions.}
+
+\placeholder{The objectives of the work are:}
+\begin{utmenumerate}
+\item \placeholder{explaining the problem and the method;}
+\item \placeholder{implementing and testing the solution;}
+\item \placeholder{drawing conclusions supported by the results;}
+\end{utmenumerate}
+
+% ---- Chapters: each starts on a new page with at least one paragraph ---------
+\chapter{Methodology}
+\placeholder{Explain how the requirements, the implementation and the checks are connected before the first subchapter.}
+
+\section{Model and notation}
+\placeholder{Equation \ref{eq:sum} defines the sum of $n$ values $x_i$; $S$ denotes their total:}
+\begin{equation}\label{eq:sum}
+S=\sum_{i=1}^{n}x_i.
+\end{equation}
+
+\section{Implementation}
+% Courier New 10 pt, single spacing. Code longer than half a page goes in an appendix.
+\placeholder{Short code belongs beside its explanation; the complete program is in Appendix \ref{app:code}. The following loop calculates the same sum:}
+\begin{lstlisting}
+int sum = 0;
+for (int index = 0; index < values.Length; index++)
+{
+    sum += values[index];
+}
+\end{lstlisting}
+
+\chapter{Results}
+% Never start a page with a table or figure: introduce it in a short paragraph first.
+\placeholder{Table \ref{tab:example} compares the values before and after the change; the values here are illustrative, not measurements.}
+\begin{table}[htbp]
+\caption{\placeholder{Comparison of the results}}\label{tab:example}
+\centering
+\begin{tabularx}{0.9\textwidth}{|Y|c|c|}\hline
+\textbf{Indicator} & \textbf{Initial value} & \textbf{Final value}\\\hline
+Processing time, min & 42.50 & 31.25\\\hline
+Errors, count & 7 & 2\\\hline
+\end{tabularx}
+\end{table}
+
+\placeholder{According to Figure \ref{fig:example}, the input is processed in one step. Cite the source of a reused or adapted figure \cite{else-model}.}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{example-diagram}
+\caption{\placeholder{Processing flow}}\label{fig:example}
+\end{figure}
+
+% ---- Conclusions -----------------------------------------------------------
+\utmconclusions
+\placeholder{Relate the results to the objectives, explain the limits and identify the next steps.}
+
+% ---- References: numbered in order of first citation, each cited with \cite --
+%   article  AUTHOR 1, A.B.; AUTHOR 2, C.D. Title. Abbreviated Journal Name Year, Volume, pages, doi.
+%   book     AUTHOR 1, A. Book Title, 3rd ed.; Publisher: Location, Country, Year; pp. 154-196.
+%   website  Title of Site. Available online: URL (accessed on Day Month Year).
+\begin{thebibliography}{9}
+\bibitem{else-model} Technical University of Moldova. \textit{Mandatory report template} (ELSE model). Available online: \placeholder{URL} (accessed on \placeholder{Day Month Year}).
+\end{thebibliography}
+
+% ---- Appendices: "APPENDIX A – Title", each on a new page --------------------
+\appendix
+\chapter{Source code}\label{app:code}
+\placeholder{Complete program listing referenced in the main text.}
+\end{document}

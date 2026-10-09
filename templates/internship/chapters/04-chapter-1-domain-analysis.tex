@@ -1,0 +1,36 @@
+% Every chapter starts on a new page and begins with at least one paragraph
+% before its first subchapter.
+\chapter{Domain analysis}
+\placeholder{Explain the domain, the existing approaches, the user needs and the requirements before describing the design. This opening paragraph is mandatory.}
+
+\section{Problem and user needs}
+\placeholder{Describe the people, their workflow and the concrete difficulty being addressed. At least one subchapter per page; two subchapters must not share a page.}
+
+% Never start a page with a table or figure: introduce it with a short paragraph first.
+\placeholder{According to Figure \ref{fig:context}, the system receives requests from the users and returns the processed result.}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.45\textwidth]{example-diagram}
+\caption{\placeholder{Figure title}}\label{fig:context}
+\end{figure}
+
+% Figures are numbered per chapter (1.1, 1.2, ...); the caption goes below the figure.
+\placeholder{As shown in Table \ref{tab:requirements}, each requirement is linked to the user need that motivates it.}
+
+% Tables: caption above, right aligned; table text is 11 pt with single spacing.
+\begin{table}[htbp]
+\caption{\placeholder{Table title}}\label{tab:requirements}
+\centering
+\begin{tabularx}{\textwidth}{|Y|Y|Y|Y|}\hline
+\multicolumn{1}{|c|}{\textbf{A}} & \multicolumn{1}{c|}{\textbf{B}} & \multicolumn{1}{c|}{\textbf{C}} & \multicolumn{1}{c|}{\textbf{D}}\\\hline
+ & & & \placeholder{Text 11 pt}\\\hline
+ & & & \placeholder{Spacing 1}\\\hline
+\end{tabularx}
+\end{table}
+
+\section{Existing approaches}
+\placeholder{Compare relevant approaches using cited evidence \cite{example-article}.}
+
+\section{Requirements}
+\placeholder{List the functional and non-functional requirements that follow from the analysis.}

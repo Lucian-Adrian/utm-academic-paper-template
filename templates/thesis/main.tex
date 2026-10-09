@@ -1,0 +1,83 @@
+% UTM license thesis/project starter.
+% Replace every red placeholder with verified details from the approved task sheet,
+% your own research and the supervisor's instructions before preparing a final copy.
+% Check the course curriculum for clear permission before using generative AI.
+% If permitted, disclose its use in the form required by the instructor or department.
+% For a thesis written in another language, the UTM guide requires title pages in
+% that language and Romanian. Set the institutional fields and language before each
+% \makeutmthesistitlepage call; the class counts both title pages automatically.
+\documentclass[thesis]{utmreport}
+\selectlanguage{romanian}
+
+\utmlogo{utm-logo.png}
+\institution{Universitatea Tehnică a Moldovei}
+\faculty{Facultatea Calculatoare, Informatică și Microelectronică}
+\department{\placeholder{Departamentul de profil}}
+\documenttype{Proiect / teză de licență}
+\reporttitle{\placeholder{Titlul aprobat al proiectului / tezei de licență}}
+\student{\placeholder{Prenumele NUMELE}}{\placeholder{Grupa academică}}
+\supervisor{\placeholder{Prenumele NUMELE}}{\placeholder{titlul științifico-didactic și științific}}
+\consultant{\placeholder{Prenumele NUMELE}}{\placeholder{titlul consultantului}}
+\cityyear{Chișinău}{\placeholder{anul susținerii}}
+
+\begin{document}
+\makeutmcover
+\makeutmthesistitlepage
+\utmfrontmatter
+
+\unnumberedchapter{Caiet de sarcini}
+\placeholder{Introduceți aici paginile caietului de sarcini aprobat și completat de departament. Nu inventați tema, datele inițiale, termenele sau semnăturile.}
+\clearpage
+
+\unnumberedchapter{Declarația studentului}
+\placeholder{Înlocuiți această pagină cu declarația oficială scrisă de mână în exemplarul final. Folosiți textul și instrucțiunile cerute de UTM și de departament.}
+\clearpage
+
+\unnumberedchapter{Avizul coordonatorului}
+\placeholder{Introduceți avizul completat și semnat de coordonator. Nu completați și nu semnați acest document în numele coordonatorului.}
+\clearpage
+
+\begin{utmabstract}[Rezumat]
+\placeholder{Scrieți un rezumat de 300-500 de cuvinte despre scopul real, obiectivele, metodele și rezultatele obținute. Includeți numele autorului, titlul aprobat și structura lucrării.}
+
+\utmkeywords{\placeholder{până la 5 cuvinte-cheie, cu litere mici}}
+\end{utmabstract}
+
+\selectlanguage{english}
+\begin{utmabstract}[Abstract]
+\placeholder{Provide an English translation of the Romanian abstract, including the title, with the same 300-500 word scope and only verified research details.}
+
+\utmkeywords{\placeholder{up to 5 lowercase keywords}}
+\end{utmabstract}
+\selectlanguage{romanian}
+% If the thesis language is neither Romanian nor English, add its original-language
+% annotation too, following the current department and supervisor instructions.
+
+\tableofcontents
+
+% Include this list if the thesis uses abbreviations or terms outside Romanian.
+\begin{utmabbreviations}
+\item[\placeholder{API}] \placeholder{Interfață de programare a aplicațiilor}
+\end{utmabbreviations}
+
+\utmintroduction
+\placeholder{Prezentați tema aprobată, actualitatea ei, problema, scopul, obiectivele, metodologia și structura lucrării, pe baza cercetării efectuate.}
+
+\chapter{Cadrul teoretic}
+\placeholder{Sintetizați critic sursele relevante pentru tema aprobată. Citați fiecare sursă în ordinea primei apariții, de exemplu \cite{source-a}.}
+
+\chapter{Metodologia și rezultatele cercetării}
+\placeholder{Descrieți metodele folosite, soluția realizată și rezultatele verificate. Explicați limitările și nu prezentați exemple ca măsurători.}
+
+\utmconclusions
+\placeholder{Formulați concluzii legate de obiective și rezultate, apoi indicați limitele și direcțiile următoare.}
+
+\begin{thebibliography}{99}
+\bibitem{source-a} \placeholder{Completați referința în stilul IEEE cerut de UTM. Citați-o în text ca [1].}
+\end{thebibliography}
+
+\appendix
+\chapter{Materiale suplimentare}
+\placeholder{Includeți aici numai materiale suplimentare la care faceți trimitere în text.}
+
+\end{document}

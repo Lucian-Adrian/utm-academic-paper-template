@@ -9,3 +9,6 @@ build/
 _fonttest*.tex
 _fonttest*.pdf
 _fonttest*.log
+
+# compiled output inside templates (figures/ keep their PDFs)
+templates/*/*.pdf
