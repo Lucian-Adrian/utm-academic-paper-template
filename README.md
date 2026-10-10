@@ -2,9 +2,9 @@
 
 LaTeX templates for students at the Technical University of Moldova (UTM): laboratory and course reports, the team internship report, the license thesis, and conference articles and abstracts.
 
-The report templates follow the verified 2 October ELSE Word baseline (`MANDATORY_report_memplate.docx`) and the current FCIM formatting rules for covers, contents, headings, captions, references and appendices. The latest Word download was blocked and its current bytes remain unverified; see the source notes in `docs/rules/`.
+The report templates follow the current PP3702 Word model and FCIM formatting rules for covers, contents, headings, captions, references and appendices. The Word attachment downloaded from ELSE assignment 70854 on 9 October and again on 10 October 2026 has the same SHA-256 as the retained 2 October reference, so the measured Word baseline is byte-identical. See `docs/rules/` for source details.
 
-![UTM template audit summary, 9 October 2026](docs/template-audit-summary-2026-10-09.png)
+![UTM template review with verified Word model, 9 October 2026](docs/template-audit-verified-2026-10-09.png)
 
 ## Start in three steps
 

@@ -1,8 +1,8 @@
 # ELSE mandatory report profile
 
-The report defaults follow `MANDATORY_report_memplate (1).docx`, supplied by the owner on 2 October 2026. Its SHA-256 is `95274233D56A71BB9F1DE24E2403EB2D43BC3C0DE01231622FA6B8C156C78BF7`. The Word source is not redistributed here. Measurements were read from its section properties, paragraph styles and native Word rendering; explanatory text in the source is guidance, not completed report content.
+The report defaults follow `MANDATORY_report_memplate (1).docx`, first supplied on 2 October 2026. On 9 October and again on 10 October 2026, the current Word attachment from [ELSE assignment 70854](https://else.fcim.utm.md/pluginfile.php/216030/mod_assign/introattachment/0/MANDATORY_report_memplate.docx?forcedownload=1) was downloaded. Its SHA-256 exactly matches the retained reference: `95274233D56A71BB9F1DE24E2403EB2D43BC3C0DE01231622FA6B8C156C78BF7`. The Word source is not redistributed here. Measurements were read from its section properties, paragraph styles and native Word rendering; explanatory text in the source is guidance, not completed report content.
 
-The current public FCIM ELSE page [Reguli de redactare](https://else.fcim.utm.md/mod/book/tool/print/index.php?id=66357) was printed 1 September 2026 and checked on 9 October 2026. It confirms the shared formatting rules below. The supplied Word model continues to control report-specific cover fields and finer layout. The title, assignment sheet, signed approvals and research content are not inferred from the general rules.
+The public FCIM ELSE page [Reguli de redactare](https://else.fcim.utm.md/mod/book/tool/print/index.php?id=66357) was checked on 9 October 2026. Its print view dynamically displayed 9 October 2026 at 18:12. It confirms the shared formatting rules below. The supplied Word model continues to control report-specific cover fields and finer layout. The title, assignment sheet, signed approvals and research content are not inferred from the general rules.
 
 ## Page and body
 
