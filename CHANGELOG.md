@@ -1,5 +1,9 @@
 # Changes
 
+## 2026-10-13
+
+- Centered the UTM logo above the institution text on individual and internship report covers, at the owner's request. Synced the shared class into the self-contained templates. This layout is a requested adaptation of the supplied report model.
+
 ## 2026-10-09 (current thesis and integrity rules)
 
 - Checked the supplied report model against the current FCIM ELSE formatting page; the report profile remains governed by the supplied Word model.

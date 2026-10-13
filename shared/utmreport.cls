@@ -319,18 +319,17 @@
 \submissiondate{....... / ....... / ..............}
 \internshipmentor{From internship contract}
 
-% Logo beside the university, faculty, department and study programme.
+% Centered logo above the university, faculty, department and programme.
 \newcommand{\UTMReportInstitutionBlock}{%
   \vspace*{20pt}%
-  \noindent\begin{minipage}[c]{0.22\textwidth}
-    \centering\includegraphics[width=0.85\linewidth]{\UTMLogoPath}
-  \end{minipage}\hfill
-  \begin{minipage}[c]{0.76\textwidth}
+  \begingroup
     \centering\linespread{1}\selectfont
+    \includegraphics[height=2.5cm]{\UTMLogoPath}\par
+    \vspace{0.5cm}%
     {\bfseries\fontsize{14pt}{17pt}\selectfont\MakeUppercase{\UTMInstitution}\par}
     {\fontsize{13pt}{16pt}\selectfont\UTMFaculty\par\UTMDepartment\par
     \ifx\UTMStudyProgramme\empty\else\UTMStudyProgramme\par\fi}
-  \end{minipage}\par
+  \endgroup
 }
 % Document type (20 pt) and title (18 pt), both bold and uppercase.
 \newcommand{\UTMReportHeadline}{%
